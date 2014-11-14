@@ -266,7 +266,7 @@
 
         <dependency>
             <groupId>br.com.altamira</groupId>
-            <artifactId>data-dao</artifactId>
+            <artifactId>data-model</artifactId>
             <version>${version.data}</version>
             <type>jar</type>
         </dependency>
