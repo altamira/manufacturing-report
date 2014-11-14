@@ -15,21 +15,39 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<persistence version="2.0"
-   xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="
-        http://java.sun.com/xml/ns/persistence
-        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-   <persistence-unit name="primary">
-      <!-- If you are running in a production environment, add a managed 
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://java.sun.com/xml/ns/persistence         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="primary">
+    <!-- If you are running in a production environment, add a managed 
          data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/manufacturing-report-ds.xml, you
+    <!-- The datasource is deployed as WEB-INF/manufacturing-report-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/manufacturing-report-ds.xml -->
-      <jta-data-source>java:jboss/datasources/manufacturing-reportDS</jta-data-source>
-      <properties>
-         <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
-      </properties>
-   </persistence-unit>
+    <jta-data-source>java:jboss/datasources/manufacturing-reportDS</jta-data-source>
+    <class>br.com.altamira.data.model.manufacturing.bom.BOM</class>
+    <class>br.com.altamira.data.model.manufacturing.bom.BOMItem</class>
+    <class>br.com.altamira.data.model.manufacturing.bom.BOMItemPart</class>
+    <class>br.com.altamira.data.model.manufacturing.order.Order</class>
+    <class>br.com.altamira.data.model.manufacturing.order.OrderItem</class>
+    <class>br.com.altamira.data.model.manufacturing.order.OrderItemPart</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Consume</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Operation</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Process</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Produce</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Revision</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Sketch</class>
+    <class>br.com.altamira.data.model.manufacturing.process.Use</class>
+    <class>br.com.altamira.data.model.measurement.Magnitude</class>
+    <class>br.com.altamira.data.model.measurement.Unit</class>
+    <class>br.com.altamira.data.model.purchasing.Material</class>
+    <class>br.com.altamira.data.model.purchasing.Request</class>
+    <class>br.com.altamira.data.model.purchasing.RequestItem</class>
+    <class>br.com.altamira.data.model.sales.Order</class>
+    <class>br.com.altamira.data.model.sales.OrderItem</class>
+    <class>br.com.altamira.data.model.sales.OrderItemPart</class>
+    <class>br.com.altamira.data.model.sales.Product</class>
+    <properties>
+      <!-- Properties for Hibernate -->
+      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      <property name="hibernate.show_sql" value="false"/>
+    </properties>
+  </persistence-unit>
 </persistence>
