@@ -1,12 +1,15 @@
 package br.com.altamira.report.manufacturing;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -36,7 +39,7 @@ public class ProcessReport extends ReportConfig {
 		return processData;
 	}
 	
-	public Response getReport(String id) {
+	public Response getReport(String id) throws IOException {
 		
 		ArrayList<ProcessReportDisplayDataBean> dataList = new ArrayList<ProcessReportDisplayDataBean>();
 		JasperPrint jasperPrint;
@@ -67,9 +70,7 @@ public class ProcessReport extends ReportConfig {
 				newLineText = "";
 			}
             revisionByData = revisionByData + revisions.get(i).getBy()  + newLineText;
-            //TODO check data for date format
-            //revisionDateData = revisionDateData + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(revision.get(i).getDate())) + newLineText;
-            revisionDateData = revisions.get(i).getDate() + newLineText;
+            revisionDateData = revisionDateData + new java.text.SimpleDateFormat("dd/MM/yyyy").format(revisions.get(i).getDate()) + newLineText;
 
         }
 		parameters.put("RevisionByData", revisionByData);
@@ -139,12 +140,15 @@ public class ProcessReport extends ReportConfig {
     			
             }
     		
+    		InputStream in = new ByteArrayInputStream(operations.get(i).getSketch().getImage());
+			BufferedImage imfg = null;
+			imfg = ImageIO.read(in);
     		//CREATE AND ADD THE OBJECT FOR MFG OPERATION DATA LIST
     		//CREATE THE OBJECT
     		ProcessReportDisplayDataBean dataBean = new ProcessReportDisplayDataBean();
 			dataBean.setName(operationName);
 			dataBean.setDescriptionOperation(descriptionOperation);
-			dataBean.setScetchOfOperation(decodeToImage(operations.get(i).getSketch().getImage()));
+			dataBean.setScetchOfOperation(imfg);
 			dataBean.setInputCodeList(inputCodeList);
 			dataBean.setInputMaterialList(inputMaterialList);
 			dataBean.setInputQtyList(inputQtyList);
