@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Size;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -57,8 +56,8 @@ public class Reports  extends ReportConfig{
 			return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
 		}
 
-		ProcessReport mfgProcessReport = new ProcessReport();
-		return mfgProcessReport.getReport(id);	
+		ProcessReport processReport = new ProcessReport();
+		return processReport.getReport(id);	
 
 	}
 

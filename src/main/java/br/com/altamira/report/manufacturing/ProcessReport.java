@@ -32,8 +32,8 @@ public class ProcessReport extends ReportConfig {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/process/");
-		Process mfgProcessData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(Process.class);
-		return mfgProcessData;
+		Process processData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(Process.class);
+		return processData;
 	}
 	
 	public Response getReport(String id) {
@@ -42,8 +42,8 @@ public class ProcessReport extends ReportConfig {
 		JasperPrint jasperPrint;
 		byte[] pdf = null;
 		
-		Process mfgReportData = this.getData(id);
-		List<Consume> mfgInput = null;
+		Process processReportData = this.getData(id);
+		List<Consume> consumes = null;
 		String revisionByData = "";
 		String revisionDateData = "";
 		
@@ -51,33 +51,33 @@ public class ProcessReport extends ReportConfig {
 		//SET THE PARAMETERS
 		parameters.put("Title", "Processo de Fabricação");
      	parameters.put("UserName", ReportConfig.userName);
-     	parameters.put("Code", mfgReportData.getCode());
-     	parameters.put("Description", mfgReportData.getDescription());
-     	parameters.put("Color", mfgReportData.getColor());
-     	parameters.put("Weight", mfgReportData.getWeight());
-     	parameters.put("Width", mfgReportData.getWidth());
-     	parameters.put("Length", mfgReportData.getLength());
-     	parameters.put("Finish", mfgReportData.getFinish());
+     	parameters.put("Code", processReportData.getCode());
+     	parameters.put("Description", processReportData.getDescription());
+     	parameters.put("Color", processReportData.getColor());
+     	parameters.put("Weight", processReportData.getWeight());
+     	parameters.put("Width", processReportData.getWidth());
+     	parameters.put("Length", processReportData.getLength());
+     	parameters.put("Finish", processReportData.getFinish());
      	parameters.put("LogoImage", this.getLogo());
 		
-		List<Revision> revision = mfgReportData.getRevision();
-		for (int i = 0; i < revision.size(); i++) {	
+		List<Revision> revisions = processReportData.getRevision();
+		for (int i = 0; i < revisions.size(); i++) {	
 			String newLineText = "\r\n";
-			if(i == (revision.size() - 1)) {
+			if(i == (revisions.size() - 1)) {
 				newLineText = "";
 			}
-            revisionByData = revisionByData + revision.get(i).getBy()  + newLineText;
+            revisionByData = revisionByData + revisions.get(i).getBy()  + newLineText;
             //TODO check data for date format
             //revisionDateData = revisionDateData + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(revision.get(i).getDate())) + newLineText;
-            revisionDateData = revision.get(i).getDate() + newLineText;
+            revisionDateData = revisions.get(i).getDate() + newLineText;
 
         }
 		parameters.put("RevisionByData", revisionByData);
      	parameters.put("RevisionDateData", revisionDateData);
      	
-		List<Operation> mfgOperations = mfgReportData.getOperation();
-		for (int i = 0; i < mfgOperations.size(); i++) {
-			String operationName = mfgOperations.get(i).getSequence() + " - " + mfgOperations.get(i).getName();
+		List<Operation> operations = processReportData.getOperation();
+		for (int i = 0; i < operations.size(); i++) {
+			String operationName = operations.get(i).getSequence() + " - " + operations.get(i).getName();
 			String inputCodeList = "";
 			String inputMaterialList = "";
 			String inputQtyList = "";
@@ -87,54 +87,54 @@ public class ProcessReport extends ReportConfig {
 			String useCodeList = "";
 			String useMaterialList = "";
 			String useQtyList = "";
-			String descriptionOperation = mfgOperations.get(i).getDescription();
+			String descriptionOperation = operations.get(i).getDescription();
 			
-            mfgInput = mfgOperations.get(i).getConsume();
+            consumes = operations.get(i).getConsume();
 
-            for (int j = 0; j < mfgInput.size(); j++) {
+            for (int j = 0; j < consumes.size(); j++) {
             	String newLineText = "\r\n";
-            	if(j == (mfgInput.size() - 1)) {
+            	if(j == (consumes.size() - 1)) {
             		newLineText = "";
             	}
             	
-            	String qtyText = mfgInput.get(j).getQuantity().getValue() + 
+            	String qtyText = consumes.get(j).getQuantity().getValue() + 
             			" " + 
-            			mfgInput.get(j).getQuantity().getUnit().getSymbol();
-            	inputCodeList = inputCodeList + mfgInput.get(j).getCode()  + newLineText;
-            	inputMaterialList = inputMaterialList + mfgInput.get(j).getDescription()  + newLineText;
+            			consumes.get(j).getQuantity().getUnit().getSymbol();
+            	inputCodeList = inputCodeList + consumes.get(j).getCode()  + newLineText;
+            	inputMaterialList = inputMaterialList + consumes.get(j).getDescription()  + newLineText;
             	inputQtyList = inputQtyList + qtyText  + newLineText;
 
             }
     		
-    		List<Produce> mfgOutput = mfgOperations.get(i).getProduce();
-    		for (int j = 0; j < mfgOutput.size(); j++) {
+    		List<Produce> produces = operations.get(i).getProduce();
+    		for (int j = 0; j < produces.size(); j++) {
     			String newLineText = "\r\n";
-    			if(j == (mfgOutput.size() - 1)) {
+    			if(j == (produces.size() - 1)) {
     				newLineText = "";
     			}
     			
-    			String qtyText = mfgOutput.get(j).getQuantity().getValue() +
+    			String qtyText = produces.get(j).getQuantity().getValue() +
     					" " +
-    					mfgOutput.get(j).getQuantity().getUnit().getSymbol();
-    			outputCodeList = outputCodeList + mfgOutput.get(j).getCode()  + newLineText;
-    			outputMaterialList = outputMaterialList + mfgOutput.get(j).getDescription()  + newLineText;
+    					produces.get(j).getQuantity().getUnit().getSymbol();
+    			outputCodeList = outputCodeList + produces.get(j).getCode()  + newLineText;
+    			outputMaterialList = outputMaterialList + produces.get(j).getDescription()  + newLineText;
     			outputQtyList = outputQtyList + qtyText  + newLineText;
     			
             }
     		
-    		List<Use> mfgUse = mfgOperations.get(i).getUse();
-    		for (int j = 0; j < mfgUse.size(); j++) {
+    		List<Use> uses = operations.get(i).getUse();
+    		for (int j = 0; j < uses.size(); j++) {
     			String newLineText = "\r\n";
-    			if(j == (mfgUse.size() - 1)) {
+    			if(j == (uses.size() - 1)) {
     				newLineText = "";
     			}
     			
-    			String qtyText = mfgUse.get(j).getQuantity().getValue() + 
+    			String qtyText = uses.get(j).getQuantity().getValue() + 
     					" " +
-    					mfgUse.get(j).getQuantity().getUnit().getSymbol();
+    					uses.get(j).getQuantity().getUnit().getSymbol();
     			
-    			useCodeList = useCodeList + mfgUse.get(j).getCode()  + newLineText;
-    			useMaterialList = useMaterialList + mfgUse.get(j).getDescription()  + newLineText;
+    			useCodeList = useCodeList + uses.get(j).getCode()  + newLineText;
+    			useMaterialList = useMaterialList + uses.get(j).getDescription()  + newLineText;
     			useQtyList = useQtyList + qtyText  + newLineText;
     			
             }
@@ -144,7 +144,7 @@ public class ProcessReport extends ReportConfig {
     		ProcessReportDisplayDataBean dataBean = new ProcessReportDisplayDataBean();
 			dataBean.setName(operationName);
 			dataBean.setDescriptionOperation(descriptionOperation);
-			dataBean.setScetchOfOperation(decodeToImage(mfgOperations.get(i).getSketch().getImage()));
+			dataBean.setScetchOfOperation(decodeToImage(operations.get(i).getSketch().getImage()));
 			dataBean.setInputCodeList(inputCodeList);
 			dataBean.setInputMaterialList(inputMaterialList);
 			dataBean.setInputQtyList(inputQtyList);
