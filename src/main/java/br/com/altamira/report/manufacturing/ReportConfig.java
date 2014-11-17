@@ -33,7 +33,7 @@ public abstract class ReportConfig {
 	 */
 	public Response checkAuth(String token) {
 		//Response response = null;
-
+		//TODO oauth check need to be added
 		return Response.status(Response.Status.OK).entity("success").build();
 	}
 
