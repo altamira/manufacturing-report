@@ -13,6 +13,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+
+
 /**
  * Root resource (exposed at "reports" path)
  */
@@ -58,6 +60,31 @@ public class Reports  extends ReportConfig{
 
 		ProcessReport processReport = new ProcessReport();
 		return processReport.getReport(id);	
+
+	}
+	
+	/**
+	 * Method handling HTTP GET requests. The returned object will be sent
+	 * to the client as "application/pdf" media type.
+	 * @return 
+	 * @return 
+	 *
+	 */
+	@GET @Path("/bom/{id}/checklist")
+	@Produces("application/pdf") 
+	public  Response materialListReport(
+			@Context HttpServletRequest req, 
+			@Context HttpServletResponse resp, 
+			@PathParam("id") String id) 
+					throws ServletException, IOException {
+
+		//CHECK FOR AUTH TOKEN
+		if (checkAuth(token).getStatus() != 200) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+		}
+		
+		MaterialListReport materialListReport = new MaterialListReport();
+		return materialListReport.getReport(id);	
 
 	}
 
