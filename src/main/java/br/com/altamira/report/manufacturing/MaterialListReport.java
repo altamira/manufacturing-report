@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response;
 import br.com.altamira.data.model.manufacturing.bom.BOM;
 import br.com.altamira.data.model.manufacturing.bom.BOMItem;
 import br.com.altamira.data.model.manufacturing.bom.BOMItemPart;
+import br.com.altamira.report.util.ReportConfig;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;

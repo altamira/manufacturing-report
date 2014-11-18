@@ -1,4 +1,4 @@
-package br.com.altamira.report.manufacturing;
+package br.com.altamira.report.util;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;

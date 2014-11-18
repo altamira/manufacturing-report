@@ -23,6 +23,7 @@ import br.com.altamira.data.model.manufacturing.process.Process;
 import br.com.altamira.data.model.manufacturing.process.Produce;
 import br.com.altamira.data.model.manufacturing.process.Revision;
 import br.com.altamira.data.model.manufacturing.process.Use;
+import br.com.altamira.report.util.ReportConfig;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
