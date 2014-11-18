@@ -114,6 +114,31 @@ public class Reports  extends ReportConfig{
 		return serviceOrderEditorReport.getReport(id);	
 
 	}
+	
+	/**
+	 * Method handling HTTP GET requests. The returned object will be sent
+	 * to the client as "application/pdf" media type.
+	 * @return 
+	 * @return 
+	 *
+	 */
+	@GET @Path("/bom/{id}/painting")
+	@Produces("application/pdf") 
+	public  Response serviceOrderPainting(
+			@Context HttpServletRequest req, 
+			@Context HttpServletResponse resp, 
+			@PathParam("id") String id) 
+					throws ServletException, IOException {
+
+		//CHECK FOR AUTH TOKEN
+		if (checkAuth(token).getStatus() != 200) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+		}
+		
+		PaintingReport serviceOrderPaintingReport = new PaintingReport();
+		return serviceOrderPaintingReport.getReport(id);	
+
+	}
 
 
 
