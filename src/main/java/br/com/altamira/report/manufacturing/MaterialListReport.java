@@ -65,7 +65,6 @@ public class MaterialListReport extends ReportConfig {
 	
 	public JasperPrint getPDF(String id) throws ServletException, IOException{
 		try {
-			System.out.println(id);
 			JasperPrint jasperPrint;
 			BOM reportData = this.getData(id);
 			
@@ -108,6 +107,7 @@ public class MaterialListReport extends ReportConfig {
 	     	parameters.put("NoProject", reportData.getProject());
 	     	parameters.put("Finish", reportData.getFinish());
 	     	parameters.put("Comment", reportData.getComment());
+	     	
 	     	ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
 	     	List<BOMItem> OrderItemList = reportData.getItems();
 	     	for (int i = 0; i < OrderItemList.size(); i++) {
