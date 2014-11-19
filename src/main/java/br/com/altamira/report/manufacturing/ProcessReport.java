@@ -32,11 +32,19 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class ProcessReport extends ReportConfig {
 	
-	public Process getData(String id) {
-		
-		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/process/");
-		Process processData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(Process.class);
+	public Process getData(String id) throws IOException {
+		Process processData = null;
+		try {
+			
+			Client client = ClientBuilder.newClient();
+			WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/process/");
+			processData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(Process.class);
+			return processData;
+    		
+    	} catch (Exception e) {
+    		// TODO Auto-generated catch block
+
+    	}
 		return processData;
 	}
 	
@@ -47,7 +55,10 @@ public class ProcessReport extends ReportConfig {
 		byte[] pdf = null;
 		
 		Process processReportData = this.getData(id);
-		List<Consume> consumes = null;
+		if (processReportData == null) {
+			return Response.status(Status.NOT_FOUND).entity("Não foi possivel carregar o relatorio !").build();
+		}
+		//List<Consume> consumes = null;
 		String revisionByData = "";
 		String revisionDateData = "";
 		
@@ -91,7 +102,7 @@ public class ProcessReport extends ReportConfig {
 			String useQtyList = "";
 			String descriptionOperation = operations.get(i).getDescription();
 			
-            consumes = operations.get(i).getConsume();
+			List<Consume> consumes = operations.get(i).getConsume();
 
             for (int j = 0; j < consumes.size(); j++) {
             	String newLineText = "\r\n";
