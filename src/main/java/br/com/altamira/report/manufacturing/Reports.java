@@ -1,6 +1,7 @@
 package br.com.altamira.report.manufacturing;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import br.com.altamira.report.util.ReportConfig;
 
@@ -23,6 +25,12 @@ import br.com.altamira.report.util.ReportConfig;
 
 @Path("manufacturing")
 public class Reports  extends ReportConfig{
+	
+	/**
+	 * To get the url parameters.
+	 */
+	@Context
+    protected UriInfo info;
 
 	/**
 	 * The Auth Token
@@ -53,13 +61,16 @@ public class Reports  extends ReportConfig{
 			@Context HttpServletResponse resp, 
 			@PathParam("id") String id) 
 					throws ServletException, IOException {
+		
+		//GET THE SELECTED REPORTS REQUEST
+		List<String> selectedReports = info.getQueryParameters().get("report");
 
 		//CHECK FOR AUTH TOKEN
 		if (checkAuth(token).getStatus() != 200) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
 		}
 		
-		AllReports allReports = new AllReports();
+		AllReports allReports = new AllReports(selectedReports);
 		return allReports.mergeAllReports(id);
 	}
 	
