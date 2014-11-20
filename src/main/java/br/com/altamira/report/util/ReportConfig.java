@@ -12,6 +12,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.altamira.report.manufacturing.AuthTokenChkRespDataBean;
 import sun.misc.BASE64Decoder;
 
 public abstract class ReportConfig {
@@ -32,9 +33,22 @@ public abstract class ReportConfig {
 	 * @return Response
 	 */
 	public Response checkAuth(String token) {
-		//Response response = null;
-		//TODO oauth check need to be added
-		return Response.status(Response.Status.OK).entity("success").build();
+		Response response = null;
+
+		try {
+			String url = AUTH_URL + "?token=" + token;
+			Client client = ClientBuilder.newClient();
+			WebTarget webTarget = client.target(url);
+			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+			response = invocationBuilder.get();
+			AuthTokenChkRespDataBean authTokenData  = response.readEntity(AuthTokenChkRespDataBean.class);
+			userName = authTokenData.getUserName();
+			return response;
+		} catch (Exception e) {            
+			System.out.println(e.getMessage());
+			
+		}
+		return response;
 	}
 
 
