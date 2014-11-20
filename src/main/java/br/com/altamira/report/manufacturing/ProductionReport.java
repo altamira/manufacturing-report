@@ -14,6 +14,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import br.com.altamira.data.model.manufacturing.bom.BOM;
 import br.com.altamira.data.model.manufacturing.bom.BOMItem;
@@ -29,9 +30,17 @@ public class ProductionReport extends ReportConfig {
 	
 	public BOM getData(String id) {
 		
-		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
-		BOM OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(BOM.class);
+		BOM OrderData = null;
+		try {
+			Client client = ClientBuilder.newClient();
+			WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+			OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(BOM.class);
+			return OrderData;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return OrderData;
 	}
 
@@ -42,6 +51,9 @@ public class ProductionReport extends ReportConfig {
 		//PRINT THE PDF REPORT
     	try {
     		jasperPrint = this.getPDF(id);
+    		if (jasperPrint == null) {
+    			return Response.status(Status.NOT_FOUND).entity("Não foi possivel carregar o relatorio !").build();
+    		}
     		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
     		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
 
@@ -54,15 +66,18 @@ public class ProductionReport extends ReportConfig {
     	}
 		return null;
 	}
-	
+
 	public JasperPrint getPDF(String id) {
-		JasperPrint jasperPrint;
-		
+		JasperPrint jasperPrint = null;
+
 		BOM reportData = this.getData(id);
-		
+		if (reportData == null) {
+			return jasperPrint;
+		}
+
 		//FORMATING ORDER DATE
 		String orderDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(reportData.getCreated());
-		
+
 		//FORMATING DELIVERT DATE
 		String deliveryDateDisplay = new java.text.SimpleDateFormat("w/yyyy").format(reportData.getDelivery());
 		String weekString = new java.text.SimpleDateFormat("w").format(reportData.getDelivery());
@@ -83,60 +98,60 @@ public class ProductionReport extends ReportConfig {
 		Date endDate = calendar.getTime();
 		String endDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(endDate);
 		String deliveryWeekDisplay = startDateDisplay + " a " + endDateDisplay;
-		
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		//SET THE PARAMETERS FOR JASPER REPORT
-        parameters.put("Title", "￼￼Ordem de Serviço (Produção)");
-     	parameters.put("UserName", ReportConfig.userName);
-     	parameters.put("Customer", reportData.getCustomer());
-     	parameters.put("Representative", reportData.getRepresentative());
-     	parameters.put("OrderID", reportData.getNumber());
-     	parameters.put("LogoImage", this.getLogo());
-     	parameters.put("DateRequest", orderDateDisplay);
-     	parameters.put("DeliveryTime", deliveryDateDisplay);
-     	parameters.put("DeliveryWeek", deliveryWeekDisplay);
-     	parameters.put("NoBudget", reportData.getQuotation());
-     	parameters.put("NoProject", reportData.getProject());
-     	parameters.put("Finish", reportData.getFinish());
-     	parameters.put("Comment", reportData.getComment());
-     	
-     	ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
-     	List<BOMItem> OrderItemList = reportData.getItems();
-     	for (int i = 0; i < OrderItemList.size(); i++) {
+		parameters.put("Title", "￼￼Ordem de Serviço (Produção)");
+		parameters.put("UserName", ReportConfig.userName);
+		parameters.put("Customer", reportData.getCustomer());
+		parameters.put("Representative", reportData.getRepresentative());
+		parameters.put("OrderID", reportData.getNumber());
+		parameters.put("LogoImage", this.getLogo());
+		parameters.put("DateRequest", orderDateDisplay);
+		parameters.put("DeliveryTime", deliveryDateDisplay);
+		parameters.put("DeliveryWeek", deliveryWeekDisplay);
+		parameters.put("NoBudget", reportData.getQuotation());
+		parameters.put("NoProject", reportData.getProject());
+		parameters.put("Finish", reportData.getFinish());
+		parameters.put("Comment", reportData.getComment());
 
-     		List<BOMItemPart> OrderItemProductList = OrderItemList.get(i).getParts();
-     		for (int j = 0; j < OrderItemProductList.size(); j++) {
-     			OrderItemProductDataBean dataListObj = new OrderItemProductDataBean();
-     			dataListObj.setItemCode(OrderItemList.get(i).getItem());
-     			dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
-     			dataListObj.setColor(OrderItemProductList.get(j).getColor());
-     			dataListObj.setDescription(OrderItemProductList.get(j).getDescription());
-     			dataListObj.setNote("NOTE");
-     			dataListObj.setQuantity(OrderItemProductList.get(j).getQuantity().getValue());
-     			dataListObj.setWeight(OrderItemProductList.get(j).getWeight().getValue());
+		ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
+		List<BOMItem> OrderItemList = reportData.getItems();
+		for (int i = 0; i < OrderItemList.size(); i++) {
 
-     			dataList.add(dataListObj);
-     		}
+			List<BOMItemPart> OrderItemProductList = OrderItemList.get(i).getParts();
+			for (int j = 0; j < OrderItemProductList.size(); j++) {
+				OrderItemProductDataBean dataListObj = new OrderItemProductDataBean();
+				dataListObj.setItemCode(OrderItemList.get(i).getItem());
+				dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
+				dataListObj.setColor(OrderItemProductList.get(j).getColor());
+				dataListObj.setDescription(OrderItemProductList.get(j).getDescription());
+				dataListObj.setNote("NOTE");
+				dataListObj.setQuantity(OrderItemProductList.get(j).getQuantity().getValue());
+				dataListObj.setWeight(OrderItemProductList.get(j).getWeight().getValue());
 
-     	}
-     	
-     	//GET THE JASPER FILE
+				dataList.add(dataListObj);
+			}
+
+		}
+
+		//GET THE JASPER FILE
 		InputStream reportStream = getClass().getResourceAsStream("/reports/production/production-report.jasper");
 		if (reportStream == null) {
 			//return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
 		}
-		
+
 		//PRINT THE PDF REPORT
-    	try {
-    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
-    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
-    		
-            return jasperPrint;
-    	} catch (JRException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	}
+		try {
+			JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
+			jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
+
+			return jasperPrint;
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
-	
+
 }

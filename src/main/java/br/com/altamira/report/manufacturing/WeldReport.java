@@ -14,6 +14,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import br.com.altamira.data.model.manufacturing.bom.BOM;
 import br.com.altamira.data.model.manufacturing.bom.BOMItem;
@@ -29,9 +30,17 @@ public class WeldReport extends ReportConfig {
 	
 	public BOM getData(String id) {
 		
-		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
-		BOM OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(BOM.class);
+		BOM OrderData = null;
+		try {
+			Client client = ClientBuilder.newClient();
+			WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+			OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(BOM.class);
+			return OrderData;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return OrderData;
 	}
 
@@ -42,6 +51,9 @@ public class WeldReport extends ReportConfig {
 		//PRINT THE PDF REPORT
     	try {
     		jasperPrint = this.getPDF(id);
+    		if (jasperPrint == null) {
+    			return Response.status(Status.NOT_FOUND).entity("Não foi possivel carregar o relatorio !").build();
+    		}
     		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
     		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
 
@@ -56,10 +68,13 @@ public class WeldReport extends ReportConfig {
 	}
 	
 	public JasperPrint getPDF(String id) {
-		JasperPrint jasperPrint;
-		
+		JasperPrint jasperPrint = null;
+
 		BOM reportData = this.getData(id);
-		
+		if (reportData == null) {
+			return jasperPrint;
+		}
+
 		//FORMATING ORDER DATE
 		String orderDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(reportData.getCreated());
 		
