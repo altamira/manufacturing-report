@@ -25,7 +25,12 @@ public abstract class ReportConfig {
 	/**
 	 *
 	 */
-	public static final String AUTH_URL = "http://localhost:8080/security-oauth2/auth/authz";
+	public static final String AUTH_URL = "http://localhost:8080/security-oauth2/authz/token";
+	
+	/**
+	 *
+	 */
+	public static final String DATA_BASE_URL = "http://data.altamira.com.br/data-rest-0.7.0-SNAPSHOT";
 	
 	/**
 	 * Check the Auth Token

@@ -34,18 +34,13 @@ public class ProcessReport extends ReportConfig {
 	
 	public Process getData(String id) throws IOException {
 		Process processData = null;
-		try {
-			
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/process/");
-			processData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(Process.class);
-			return processData;
-    		
-    	} catch (Exception e) {
-    		// TODO Auto-generated catch block
 
-    	}
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/process/");
+		processData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(Process.class);
 		return processData;
+
+
 	}
 	
 	public Response getReport(String id) throws IOException {
@@ -54,10 +49,13 @@ public class ProcessReport extends ReportConfig {
 		JasperPrint jasperPrint;
 		byte[] pdf = null;
 		
-		Process processReportData = this.getData(id);
-		if (processReportData == null) {
+		Process processReportData;
+		try {
+			processReportData = this.getData(id);
+		} catch (Exception e) {
 			return Response.status(Status.NOT_FOUND).entity("Não foi possivel carregar o relatorio !").build();
 		}
+		
 		//List<Consume> consumes = null;
 		String revisionByData = "";
 		String revisionDateData = "";

@@ -33,7 +33,7 @@ public class ProductionReport extends ReportConfig {
 		BOM OrderData = null;
 		try {
 			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+			WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
 			OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(BOM.class);
 			return OrderData;
 		} catch (Exception e) {
