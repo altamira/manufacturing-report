@@ -25,12 +25,16 @@ public abstract class ReportConfig {
 	/**
 	 *
 	 */
-	public static final String AUTH_URL = "http://localhost:8080/security-oauth2/authz/token";
+	public static final String AUTH_URL = "http://localhost:8080/security-oauth2/authz/permission";
 	
 	/**
 	 *
 	 */
 	public static final String DATA_BASE_URL = "http://data.altamira.com.br/data-rest-0.7.0-SNAPSHOT";
+	/**
+	 *
+	 */
+	public static final String RESOURCE = "REPORT";
 	
 	/**
 	 * Check the Auth Token
@@ -41,7 +45,7 @@ public abstract class ReportConfig {
 		Response response = null;
 
 		try {
-			String url = AUTH_URL + "?token=" + token;
+			String url = AUTH_URL + "?token=" + token + "&resource=" + RESOURCE + "&permission=READ";
 			Client client = ClientBuilder.newClient();
 			WebTarget webTarget = client.target(url);
 			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
