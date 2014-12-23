@@ -30,7 +30,7 @@ public abstract class ReportConfig {
 	/**
 	 *
 	 */
-	public static final String DATA_BASE_URL = "http://data.altamira.com.br/data-rest-0.7.0-SNAPSHOT";
+	public static final String DATA_BASE_URL = "http://localhost:8080/data-rest-0.7.5-SNAPSHOT";
 	/**
 	 *
 	 */
