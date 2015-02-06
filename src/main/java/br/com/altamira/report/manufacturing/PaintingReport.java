@@ -1,8 +1,8 @@
 package br.com.altamira.report.manufacturing;
 
 import br.com.altamira.data.model.manufacture.bom.BOM;
-import br.com.altamira.data.model.manufacture.bom.BOMItem;
-import br.com.altamira.data.model.manufacture.bom.BOMItemPart;
+import br.com.altamira.data.model.manufacture.bom.Item;
+import br.com.altamira.data.model.manufacture.bom.Component;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -118,17 +118,17 @@ public class PaintingReport extends ReportConfig {
         parameters.put("Comment", reportData.getComment());
 
         ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
-        List<BOMItem> OrderItemList = reportData.getItems();
+        List<Item> OrderItemList = reportData.getItem();
         for (int i = 0; i < OrderItemList.size(); i++) {
 
-            List<BOMItemPart> OrderItemProductList = OrderItemList.get(i).getParts();
+            List<Component> OrderItemProductList = OrderItemList.get(i).getComponent();
             for (int j = 0; j < OrderItemProductList.size(); j++) {
 
                 OrderItemProductDataBean dataListObj = new OrderItemProductDataBean();
                 dataListObj.setItemCode(OrderItemList.get(i).getItem());
                 dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
                 dataListObj.setColor(OrderItemProductList.get(j).getColor().getCode());
-                dataListObj.setDescription(OrderItemProductList.get(j).getDescription());
+                dataListObj.setDescription(OrderItemProductList.get(j).getMaterial().getDescription());
                 dataListObj.setNote("NOTE");
                 dataListObj.setQuantity(OrderItemProductList.get(j).getQuantity().getValue());
                 dataListObj.setWeight(OrderItemProductList.get(j).getWeight().getValue());

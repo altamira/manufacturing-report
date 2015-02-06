@@ -25,12 +25,12 @@ public abstract class ReportConfig {
 	/**
 	 *
 	 */
-	public static final String AUTH_URL = "http://localhost:8080/security-oauth2/authz/permission";
+	public static final String AUTH_URL = "http://data.altamira.com.br/security-oauth2/authz/permission";
 	
 	/**
 	 *
 	 */
-	public static final String DATA_BASE_URL = "http://localhost:8080/data-rest-0.7.5-SNAPSHOT";
+	public static final String DATA_BASE_URL = "http://data.altamira.com.br/data-rest-0.7.5-SNAPSHOT";
 	/**
 	 *
 	 */

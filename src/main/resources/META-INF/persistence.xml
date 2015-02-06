@@ -6,10 +6,62 @@
     <!-- The datasource is deployed as WEB-INF/0auth2-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/0auth2-ds.xml -->
     <jta-data-source>java:jboss/datasources/OracleDS</jta-data-source>
+    <class>br.com.altamira.data.model.Measurement</class>
+    <class>br.com.altamira.data.model.Process</class>
+    <class>br.com.altamira.data.model.Property</class>
+    <class>br.com.altamira.data.model.Relation</class>
+    <class>br.com.altamira.data.model.Resource</class>
+    <class>br.com.altamira.data.model.common.Color</class>
+    <class>br.com.altamira.data.model.common.Component</class>
+    <class>br.com.altamira.data.model.common.Material</class>
+    <class>br.com.altamira.data.model.common.MaterialAlias</class>
+    <class>br.com.altamira.data.model.manufacture.Machine</class>
+    <class>br.com.altamira.data.model.manufacture.Tooling</class>
+    <class>br.com.altamira.data.model.manufacture.bom.BOM</class>
+    <class>br.com.altamira.data.model.manufacture.bom.Component</class>
+    <class>br.com.altamira.data.model.manufacture.bom.Delivery</class>
+    <class>br.com.altamira.data.model.manufacture.bom.Item</class>
+    <class>br.com.altamira.data.model.manufacture.order.Order</class>
+    <class>br.com.altamira.data.model.manufacture.order.OrderItem</class>
+    <class>br.com.altamira.data.model.manufacture.order.OrderItemPart</class>
+    <class>br.com.altamira.data.model.manufacture.process.Consume</class>
+    <class>br.com.altamira.data.model.manufacture.process.Operation</class>
+    <class>br.com.altamira.data.model.manufacture.process.Process</class>
+    <class>br.com.altamira.data.model.manufacture.process.Produce</class>
+    <class>br.com.altamira.data.model.manufacture.process.Revision</class>
+    <class>br.com.altamira.data.model.manufacture.process.Sketch</class>
+    <class>br.com.altamira.data.model.manufacture.process.Use</class>
+    <class>br.com.altamira.data.model.measurement.Magnitude</class>
+    <class>br.com.altamira.data.model.measurement.Unit</class>
+    <class>br.com.altamira.data.model.purchase.Ink</class>
+    <class>br.com.altamira.data.model.purchase.Inputs</class>
+    <class>br.com.altamira.data.model.purchase.Material</class>
+    <class>br.com.altamira.data.model.purchase.Request</class>
+    <class>br.com.altamira.data.model.purchase.RequestItem</class>
+    <class>br.com.altamira.data.model.sales.Component</class>
+    <class>br.com.altamira.data.model.sales.Order</class>
+    <class>br.com.altamira.data.model.sales.OrderItem</class>
+    <class>br.com.altamira.data.model.sales.OrderItemPart</class>
+    <class>br.com.altamira.data.model.sales.Product</class>
+    <class>br.com.altamira.data.model.security.AccessToken</class>
+    <class>br.com.altamira.data.model.security.Member</class>
+    <class>br.com.altamira.data.model.security.Permission</class>
+    <class>br.com.altamira.data.model.security.Profile</class>
+    <class>br.com.altamira.data.model.security.User</class>
+    <class>br.com.altamira.data.model.shipping.execution.BOM</class>
+    <class>br.com.altamira.data.model.shipping.execution.Component</class>
+    <class>br.com.altamira.data.model.shipping.execution.Delivered</class>
+    <class>br.com.altamira.data.model.shipping.execution.Delivery</class>
+    <class>br.com.altamira.data.model.shipping.execution.Item</class>
+    <class>br.com.altamira.data.model.shipping.planning.BOM</class>
+    <class>br.com.altamira.data.model.shipping.planning.Component</class>
+    <class>br.com.altamira.data.model.shipping.planning.Delivery</class>
+    <class>br.com.altamira.data.model.shipping.planning.Item</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- Properties for Hibernate -->
       <property name="hibernate.hbm2ddl.auto" value="validate"/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
     </properties>
