@@ -25,7 +25,7 @@ public abstract class ReportConfig {
 	/**
 	 *
 	 */
-	public static final String AUTH_URL = "http://data.altamira.com.br/security-oauth2/authz/permission";
+	public static final String AUTH_URL = "http://data.altamira.com.br/security-oauth2-0.0.3-SNAPSHOT/authz/permission";
 	
 	/**
 	 *
