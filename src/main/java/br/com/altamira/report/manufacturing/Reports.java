@@ -3,6 +3,8 @@ package br.com.altamira.report.manufacturing;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,9 +22,13 @@ import br.com.altamira.report.util.ReportConfig;
 /**
  * Root resource (exposed at "reports" path)
  */
+@Stateless
 @Path("manufacturing")
 public class Reports extends ReportConfig {
 
+	@Inject
+	private MaterialListReport materialListReport;
+	
     /**
      * To get the url parameters.
      */
@@ -34,6 +40,14 @@ public class Reports extends ReportConfig {
      */
     private String token;
 
+    /**
+     * Constructor
+     *
+     */
+    public Reports() {
+        
+    }
+    
     /**
      * Constructor
      *
@@ -133,7 +147,7 @@ public class Reports extends ReportConfig {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
         }*/
 
-        MaterialListReport materialListReport = new MaterialListReport();
+        //MaterialListReport materialListReport = new MaterialListReport();
         return materialListReport.getReport(id);
 
     }

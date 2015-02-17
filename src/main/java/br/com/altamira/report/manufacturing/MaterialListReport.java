@@ -4,6 +4,7 @@ import br.com.altamira.data.dao.manufacture.bom.BOMDao;
 import br.com.altamira.data.model.manufacture.bom.BOM;
 import br.com.altamira.data.model.manufacture.bom.Item;
 import br.com.altamira.data.model.manufacture.bom.Component;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,23 +20,27 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import br.com.altamira.report.util.ReportConfig;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-@RequestScoped
+@Stateless
 public class MaterialListReport extends ReportConfig {
 
-    @Inject
-    private BOMDao bomDao;
+    @EJB
+    protected BOMDao bomDao;
 
     /**
      *
@@ -46,9 +51,11 @@ public class MaterialListReport extends ReportConfig {
 
         BOM OrderData = null;
 
-        Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
-        OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);
+//        Client client = ClientBuilder.newClient();
+//        WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
+//        OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);
+        
+         OrderData = bomDao.find(id);
 
         return OrderData;
     }
