@@ -141,7 +141,7 @@ public class MaterialListReport extends ReportConfig {
                     dataListObj.setItemCode(OrderItemList.get(i).getItem());
                     dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
                     dataListObj.setColor(OrderItemProductList.get(j).getColor().getCode());
-                    dataListObj.setDescription(OrderItemProductList.get(j).getMaterial().getDescription());
+                    dataListObj.setDescription(OrderItemProductList.get(j).getDescription());
                     dataListObj.setNote("NOTE");
                     dataListObj.setQuantity(OrderItemProductList.get(j).getQuantity().getValue());
                     dataListObj.setWeight(OrderItemProductList.get(j).getWeight().getValue());
