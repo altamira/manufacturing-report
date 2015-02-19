@@ -29,6 +29,9 @@ public class Reports extends ReportConfig {
 	@Inject
 	private MaterialListReport materialListReport;
 	
+	@Inject
+	private AllReports allReports;
+	
     /**
      * To get the url parameters.
      */
@@ -86,8 +89,8 @@ public class Reports extends ReportConfig {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
         }*/
 
-        AllReports allReports = new AllReports(selectedReports);
-        return allReports.mergeAllReports(id);
+        //AllReports allReports = new AllReports(selectedReports);
+        return allReports.mergeAllReports(id,selectedReports);
     }
 
     /**

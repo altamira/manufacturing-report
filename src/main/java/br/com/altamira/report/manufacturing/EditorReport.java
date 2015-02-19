@@ -1,8 +1,10 @@
 package br.com.altamira.report.manufacturing;
 
+import br.com.altamira.data.dao.manufacture.bom.BOMDao;
 import br.com.altamira.data.model.manufacture.bom.BOM;
 import br.com.altamira.data.model.manufacture.bom.Item;
 import br.com.altamira.data.model.manufacture.bom.Component;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -26,14 +30,19 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+@Stateless
 public class EditorReport extends ReportConfig {
+	
+	@EJB
+	protected BOMDao bomDao;
 
     public BOM getData(Long id) {
         BOM OrderData = null;
         try {
-            Client client = ClientBuilder.newClient();
+            /*Client client = ClientBuilder.newClient();
             WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
-            OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);
+            OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
+        	OrderData = bomDao.find(id);
             return OrderData;
         } catch (Exception e) {
             // TODO Auto-generated catch block

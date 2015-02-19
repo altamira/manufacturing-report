@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
@@ -13,23 +15,53 @@ import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
+@Stateless
 public class AllReports {
+	
+	@Inject
+	private MaterialListReport materialListReport;
+	
+	@Inject
+	private PaintingReport serviceOrderPaintingReport;
+	
+	@Inject
+	private ProductionReport serviceOrderProductionReport;
+	
+	@Inject
+	private ShippingReport serviceOrderShippingReport;
+	
+	@Inject
+	private TransportationReport serviceOrderTransportationReport;
+	
+	@Inject
+	private WarehouseReport serviceOrderWarehouseReport;
+	
+	@Inject
+	private WeldReport serviceOrderWeldReport;
+	
+	@Inject
+	private EditorReport serviceOrderEditorReport;
 
     private List<String> selectedReports;
 
+    public AllReports() {
+		
+	}
+    
     public AllReports(List<String> selectedReports) {
         this.selectedReports = selectedReports;
     }
 
-    public Response mergeAllReports(@PathParam("id") Long id) throws ServletException, IOException {
+    public Response mergeAllReports(@PathParam("id") Long id, List<String> selectedReports) throws ServletException, IOException {
 
         byte[] pdf = null;
         JasperPrint jasperPrintAll = null;
         List<JRPrintPage> pages;
+        this.selectedReports = selectedReports;
 
         if (this.selectedReports.contains("checklist")) {
             JasperPrint jasperPrintChecklist;
-            MaterialListReport materialListReport = new MaterialListReport();
+            // MaterialListReport materialListReport = new MaterialListReport();
             jasperPrintChecklist = materialListReport.getPDF(id);
 
             if (jasperPrintAll == null) {
@@ -39,7 +71,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("painting")) {
             JasperPrint jasperPrintPainting;
-            PaintingReport serviceOrderPaintingReport = new PaintingReport();
+            //PaintingReport serviceOrderPaintingReport = new PaintingReport();
             jasperPrintPainting = serviceOrderPaintingReport.getPDF(id);
 
             if (jasperPrintAll == null) {
@@ -56,7 +88,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("production")) {
             JasperPrint jasperPrintProduction;
-            ProductionReport serviceOrderProductionReport = new ProductionReport();
+            //ProductionReport serviceOrderProductionReport = new ProductionReport();
             jasperPrintProduction = serviceOrderProductionReport.getPDF(id);
             if (jasperPrintAll == null) {
                 jasperPrintAll = jasperPrintProduction;
@@ -72,7 +104,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("shipping")) {
             JasperPrint jasperPrintShipping;
-            ShippingReport serviceOrderShippingReport = new ShippingReport();
+            //ShippingReport serviceOrderShippingReport = new ShippingReport();
             jasperPrintShipping = serviceOrderShippingReport.getPDF(id);
             if (jasperPrintAll == null) {
                 jasperPrintAll = jasperPrintShipping;
@@ -88,7 +120,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("transport")) {
             JasperPrint jasperPrintTransportation;
-            TransportationReport serviceOrderTransportationReport = new TransportationReport();
+            //TransportationReport serviceOrderTransportationReport = new TransportationReport();
             jasperPrintTransportation = serviceOrderTransportationReport.getPDF(id);
             if (jasperPrintAll == null) {
                 jasperPrintAll = jasperPrintTransportation;
@@ -104,7 +136,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("warehouse")) {
             JasperPrint jasperPrintWarehouse;
-            WarehouseReport serviceOrderWarehouseReport = new WarehouseReport();
+            //WarehouseReport serviceOrderWarehouseReport = new WarehouseReport();
             jasperPrintWarehouse = serviceOrderWarehouseReport.getPDF(id);
             if (jasperPrintAll == null) {
                 jasperPrintAll = jasperPrintWarehouse;
@@ -120,7 +152,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("weld")) {
             JasperPrint jasperPrintWeld;
-            WeldReport serviceOrderWeldReport = new WeldReport();
+            //WeldReport serviceOrderWeldReport = new WeldReport();
             jasperPrintWeld = serviceOrderWeldReport.getPDF(id);
             if (jasperPrintAll == null) {
                 jasperPrintAll = jasperPrintWeld;
@@ -136,7 +168,7 @@ public class AllReports {
 
         if (this.selectedReports.contains("editor")) {
             JasperPrint jasperPrintEditor;
-            EditorReport serviceOrderEditorReport = new EditorReport();
+            //EditorReport serviceOrderEditorReport = new EditorReport();
             jasperPrintEditor = serviceOrderEditorReport.getPDF(id);
             if (jasperPrintAll == null) {
                 jasperPrintAll = jasperPrintEditor;
