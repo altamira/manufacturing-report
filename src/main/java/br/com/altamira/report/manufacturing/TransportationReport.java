@@ -16,10 +16,12 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+/*
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+*/
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -133,7 +135,7 @@ public class TransportationReport extends ReportConfig {
                 dataListObj.setItemCode(OrderItemList.get(i).getItem());
                 dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
                 dataListObj.setColor(OrderItemProductList.get(j).getColor().getCode());
-                dataListObj.setDescription(OrderItemProductList.get(j).getMaterial().getDescription());
+                dataListObj.setDescription(OrderItemProductList.get(j).getDescription());
                 dataListObj.setNote("NOTE");
                 dataListObj.setQuantity(OrderItemProductList.get(j).getQuantity().getValue());
                 dataListObj.setWeight(OrderItemProductList.get(j).getWeight().getValue());
