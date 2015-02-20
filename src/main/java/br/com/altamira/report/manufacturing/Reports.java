@@ -30,6 +30,9 @@ public class Reports extends ReportConfig {
 	private MaterialListReport materialListReport;
 	
 	@Inject
+	private PaintingReport serviceOrderPaintingReport;
+	
+	@Inject
 	private AllReports allReports;
 	
     /**
@@ -204,11 +207,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        PaintingReport serviceOrderPaintingReport = new PaintingReport();
+        //PaintingReport serviceOrderPaintingReport = new PaintingReport();
         return serviceOrderPaintingReport.getReport(id);
 
     }

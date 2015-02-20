@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -135,6 +137,10 @@ public class PaintingReport extends ReportConfig {
             List<Component> OrderItemProductList = OrderItemList.get(i).getComponent();
             for (int j = 0; j < OrderItemProductList.size(); j++) {
 
+            	if(OrderItemProductList.get(j).getColor().getCode().equalsIgnoreCase("S/ COR") ||
+            			OrderItemProductList.get(j).getColor().getCode().equalsIgnoreCase("S/ PINT"))
+            		continue;
+            	
                 OrderItemProductDataBean dataListObj = new OrderItemProductDataBean();
                 dataListObj.setItemCode(OrderItemList.get(i).getItem());
                 dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
@@ -148,6 +154,23 @@ public class PaintingReport extends ReportConfig {
             }
 
         }
+        
+       Collections.sort(dataList, new Comparator<OrderItemProductDataBean>() {
+
+    	   @Override
+    	   public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
+    		   
+    		   int c;
+    		   c = o1.getColor().compareTo(o2.getColor());
+    		   if(c == 0)
+    			   c = o1.getDescription().compareTo(o2.getDescription());
+    		   
+    		   return c;
+    	   }
+    	   
+       });
+
+        
         //GET THE JASPER FILE
         InputStream reportStream = getClass().getResourceAsStream("/reports/painting/painting-report.jasper");
         if (reportStream == null) {
