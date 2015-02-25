@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +31,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 */
+
+
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -149,6 +153,21 @@ public class MaterialListReport extends ReportConfig {
                     dataList.add(dataListObj);
                 }
             }
+            
+            Collections.sort(dataList, new Comparator<OrderItemProductDataBean>() {
+
+            	   @Override
+            	   public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
+            		   
+            		   int c;
+            		   c = new Long(o1.getItemCode()).compareTo(new Long(o2.getItemCode()));
+            		   if(c == 0)
+            			   c = o1.getDescription().compareTo(o2.getDescription());
+            		   
+            		   return c;
+            	   }
+            	   
+            });
 
             //GET THE JASPER FILE
             InputStream reportStream = getClass().getResourceAsStream("/reports/checklist/checklist-report.jasper");
