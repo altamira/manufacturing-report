@@ -58,6 +58,7 @@ public class WarehouseReport extends ReportConfig {
         	
         	List<Item> itemList = itemDao.list(parameters, 0, 10);
         	OrderData = itemList.get(0).getBOM();
+        	OrderData.setItem(itemList);
         	
             return OrderData;
         } catch (Exception e) {
