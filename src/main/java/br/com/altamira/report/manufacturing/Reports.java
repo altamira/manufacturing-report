@@ -36,6 +36,9 @@ public class Reports extends ReportConfig {
 	private WarehouseReport serviceOrderWarehouseReport;
 	
 	@Inject
+	private ShippingReport serviceOrderShippingReport;
+	
+	@Inject
 	private AllReports allReports;
 	
     /**
@@ -264,11 +267,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        ShippingReport serviceOrderShippingReport = new ShippingReport();
+        //ShippingReport serviceOrderShippingReport = new ShippingReport();
         return serviceOrderShippingReport.getReport(id);
 
     }
