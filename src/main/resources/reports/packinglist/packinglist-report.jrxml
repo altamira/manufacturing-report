@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mfg-order-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69408105-1b45-4bcd-b27e-a3f5705e3d0f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mfg-order-report" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69408105-1b45-4bcd-b27e-a3f5705e3d0f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="ireport.zoom" value="1.6105100000000012"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="111"/>
+	<property name="ireport.y" value="93"/>
 	<parameter name="Title" class="java.lang.String">
 		<parameterDescription><![CDATA[Title]]></parameterDescription>
 	</parameter>
@@ -195,7 +195,7 @@
 					</textElement>
 					<text><![CDATA[PESO TOTAL (kg)]]></text>
 				</staticText>
-				<textField pattern="###0.000">
+				<textField pattern="###0.000" isBlankWhenNull="true">
 					<reportElement uuid="a22981fb-2a4b-4886-b591-db31b52c9df9" mode="Transparent" x="477" y="3" width="74" height="15" forecolor="#000000" backcolor="#FFFFFF">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -651,20 +651,22 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="e0290118-6515-4a02-a520-219deb8cac02" mode="Transparent" x="0" y="6" width="555" height="38" printWhenGroupChanges="Material">
+				<reportElement uuid="e0290118-6515-4a02-a520-219deb8cac02" mode="Transparent" x="0" y="6" width="555" height="38" isRemoveLineWhenBlank="true" printWhenGroupChanges="Material">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$P{Comment}!=null]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="856a976e-6a01-4fe9-af05-ebac67ab515e" x="8" y="22" width="543" height="15">
+				<reportElement uuid="856a976e-6a01-4fe9-af05-ebac67ab515e" x="8" y="22" width="543" height="15" isRemoveLineWhenBlank="true">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$P{Comment}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement>
 					<font size="10"/>
@@ -672,11 +674,12 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$P{Comment}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="2472412c-2766-4889-bb15-ac14e550232f" x="4" y="5" width="150" height="16">
+				<reportElement uuid="2472412c-2766-4889-bb15-ac14e550232f" x="4" y="5" width="150" height="16" isRemoveLineWhenBlank="true">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$P{Comment}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
