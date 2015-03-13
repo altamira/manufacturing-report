@@ -39,6 +39,18 @@ public class Reports extends ReportConfig {
 	private ShippingReport serviceOrderShippingReport;
 	
 	@Inject
+	private EditorReport serviceOrderEditorReport;
+	
+	@Inject
+	private ProductionReport serviceOrderProductionReport;
+	
+	@Inject
+	private TransportationReport serviceOrderTransportationReport;
+	
+	@Inject
+	private WeldReport serviceOrderWeldReport;
+	
+	@Inject
 	private AllReports allReports;
 	
     /**
@@ -186,11 +198,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        EditorReport serviceOrderEditorReport = new EditorReport();
+        //EditorReport serviceOrderEditorReport = new EditorReport();
         return serviceOrderEditorReport.getReport(id);
 
     }
@@ -240,11 +252,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        ProductionReport serviceOrderProductionReport = new ProductionReport();
+        //ProductionReport serviceOrderProductionReport = new ProductionReport();
         return serviceOrderProductionReport.getReport(id);
 
     }
@@ -294,11 +306,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        TransportationReport serviceOrderTransportationReport = new TransportationReport();
+        //TransportationReport serviceOrderTransportationReport = new TransportationReport();
         return serviceOrderTransportationReport.getReport(id);
 
     }
@@ -348,11 +360,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        WeldReport serviceOrderWeldReport = new WeldReport();
+        //WeldReport serviceOrderWeldReport = new WeldReport();
         return serviceOrderWeldReport.getReport(id);
 
     }
