@@ -18,6 +18,8 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
@@ -43,31 +45,43 @@ public class WarehouseReport extends ReportConfig {
 	@EJB
 	protected ItemDao itemDao;
 	
-    public BOM getData(Long id) {
+	@PersistenceContext
+	protected EntityManager entityManager;
+	
+	public BOM getData(Long id) {
 
-        BOM OrderData = null;
-        try {
-            /*Client client = ClientBuilder.newClient();
-            WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
-            OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
-        	
-        	MultivaluedMap<String, String> parameters = new MultivaluedHashMap<String, String>();
-        	List<String> parentId = new ArrayList<String>();
-        	parentId.add(id.toString());
-        	parameters.put("parentId", parentId);
-        	
-        	List<Item> itemList = itemDao.list(parameters, 0, 10);
-        	OrderData = itemList.get(0).getBOM();
-        	OrderData.setItem(itemList);
-        	
-            return OrderData;
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+		BOM OrderData = null;
+		try {
+			/*Client client = ClientBuilder.newClient();
+             WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
+             OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
 
-        return OrderData;
-    }
+			OrderData = entityManager.find(BOM.class, id);
+			
+			/*if (OrderData != null) {
+                MultivaluedMap<String, String> parameters = new MultivaluedHashMap<String, String>();
+                
+                List<String> parentId = new ArrayList<String>();
+                parentId.add(id.toString());
+                parameters.put("parentId", parentId);
+                
+                List<String> item = new ArrayList<String>();
+                item.add("0");
+                parameters.put("item", item);
+
+                List<Item> itemList = itemDao.list(parameters, 0, 1);
+
+                OrderData.setItem(itemList);
+            }*/
+			
+			return OrderData;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return OrderData;
+	}
 
     public Response getReport(Long id) {
         JasperPrint jasperPrint;

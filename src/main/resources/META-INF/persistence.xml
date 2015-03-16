@@ -56,7 +56,10 @@
     <class>br.com.altamira.data.model.shipping.planning.BOM</class>
     <class>br.com.altamira.data.model.shipping.planning.Component</class>
     <class>br.com.altamira.data.model.shipping.planning.Delivery</class>
+    <class>br.com.altamira.data.model.shipping.planning.History</class>
     <class>br.com.altamira.data.model.shipping.planning.Item</class>
+    <class>br.com.altamira.data.model.shipping.planning.Status</class>
+    <class>br.com.altamira.data.model.shipping.planning.Transport</class>
     <class>br.com.altamira.data.model.purchase.Steel</class>
     <class>br.com.altamira.data.model.shipping.execution.PackingList</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
