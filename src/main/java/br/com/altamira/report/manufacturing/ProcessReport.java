@@ -1,11 +1,13 @@
 package br.com.altamira.report.manufacturing;
 
+import br.com.altamira.data.dao.manufacture.process.ProcessDao;
 import br.com.altamira.data.model.manufacture.process.Process;
 import br.com.altamira.data.model.manufacture.process.Consume;
 import br.com.altamira.data.model.manufacture.process.Operation;
 import br.com.altamira.data.model.manufacture.process.Produce;
 import br.com.altamira.data.model.manufacture.process.Revision;
 import br.com.altamira.data.model.manufacture.process.Use;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -32,12 +35,18 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class ProcessReport extends ReportConfig {
 
+	@Inject
+	protected ProcessDao processDao;
+	
     public Process getData(Long id) throws IOException {
         Process processData = null;
 
-        Client client = ClientBuilder.newClient();
+        /*Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/process/");
-        processData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(Process.class);
+        processData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(Process.class);*/
+        
+        processData = processDao.find(id);
+        
         return processData;
     }
 

@@ -51,6 +51,9 @@ public class Reports extends ReportConfig {
 	private WeldReport serviceOrderWeldReport;
 	
 	@Inject
+	private ProcessReport processReport;
+	
+	@Inject
 	private AllReports allReports;
 	
     /**
@@ -136,11 +139,11 @@ public class Reports extends ReportConfig {
             throws ServletException, IOException {
 
         //CHECK FOR AUTH TOKEN
-        if (checkAuth(token).getStatus() != 200) {
+        /*if (checkAuth(token).getStatus() != 200) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }
+        }*/
 
-        ProcessReport processReport = new ProcessReport();
+        //ProcessReport processReport = new ProcessReport();
         return processReport.getReport(id);
 
     }
