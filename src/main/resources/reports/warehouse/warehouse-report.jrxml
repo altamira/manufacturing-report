@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-painting-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a6e9caa-30ea-47e3-b52c-ad1dd7ab559b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-warehouse-report" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="5a6e9caa-30ea-47e3-b52c-ad1dd7ab559b">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<property name="ireport.zoom" value="2.1029633968883545"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.102963396888355"/>
+	<property name="ireport.x" value="16"/>
+	<property name="ireport.y" value="18"/>
 	<parameter name="Title" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
@@ -86,7 +86,7 @@
 			<textField>
 				<reportElement uuid="79682000-ab5a-4fe2-9b10-4fbdf4f159df" x="497" y="36" width="49" height="11"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="8" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{UserName}]]></textFieldExpression>
 			</textField>
@@ -95,15 +95,15 @@
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif" size="8" isPdfEmbedded="false"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="4239d528-a28e-4260-8296-ba911bb83e98" x="521" y="25" width="18" height="11"/>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif" size="8" isPdfEmbedded="false"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
@@ -113,7 +113,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="8" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(new SimpleDateFormat("HH:mm:ss")).format(new Date())]]></textFieldExpression>
 			</textField>
@@ -123,42 +123,42 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="8" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="643906f3-9cf8-476a-ac27-819d724e9ba9" x="482" y="3" width="29" height="11"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="8" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="a1198064-51b5-43d6-a5fe-8bd3249ecc22" x="482" y="14" width="29" height="11"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="8" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Hora]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="abbc3d83-b398-4347-a2a6-e635e04c3880" x="482" y="25" width="29" height="11"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="8" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Página]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="ee785307-6328-4d47-9b39-01ecf508d6a2" x="132" y="2" width="264" height="13"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<font fontName="SansSerif" size="9" isBold="true" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="9" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[ALTAMIRA Indústria Metalúrgica Ltda.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="193daa13-906f-4b61-849c-35d2d78b7b2a" x="132" y="13" width="300" height="40"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<font fontName="SansSerif" size="9" isBold="false" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="9" isBold="false" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Rua Ganges, 528 - Vila Nova Manchester
 03445-030 - São Paulo - SP   Fone: (11) 2095-2855   Fax: (11) 2095-2865
@@ -174,12 +174,12 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<imageExpression><![CDATA[$P{LogoImage}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement uuid="94121337-6b80-45e4-8299-1600fc008733" x="145" y="59" width="262" height="20">
+				<reportElement uuid="94121337-6b80-45e4-8299-1600fc008733" x="4" y="59" width="547" height="20">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="15" isBold="true"/>
+					<font fontName="Arial" size="15" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Title}]]></textFieldExpression>
 			</textField>
@@ -220,15 +220,15 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Qtde.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="de609ca3-c1a6-4e4e-b16d-1bd4b549cd86" x="64" y="80" width="400" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Descrição do Material]]></text>
 			</staticText>
@@ -236,8 +236,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<reportElement uuid="9dc24510-ec1f-45cb-b651-2d3cd22549f8" x="470" y="80" width="82" height="12">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Peso]]></text>
 			</staticText>
@@ -255,13 +255,13 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
-					<font size="9" isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement uuid="5862af14-0e80-4983-9ad9-82fd7e2bac0f" x="71" y="6" width="320" height="14">
+				<reportElement uuid="5862af14-0e80-4983-9ad9-82fd7e2bac0f" x="74" y="6" width="320" height="14">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -271,26 +271,26 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<bottomPen lineWidth="0.2"/>
 					<rightPen lineWidth="0.2"/>
 				</box>
-				<textElement>
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Customer}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="2c9eee63-3f3b-4270-b10b-67f73e585dfb" x="3" y="25" width="63" height="14">
+				<reportElement uuid="2c9eee63-3f3b-4270-b10b-67f73e585dfb" x="3" y="25" width="66" height="14">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unity" value="pixel"/>
 				</reportElement>
-				<textElement>
-					<font size="9" isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Representante]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="2266b37a-0bfc-4b76-b1a4-0b16b3124e9d" x="71" y="25" width="320" height="14">
+				<reportElement uuid="2266b37a-0bfc-4b76-b1a4-0b16b3124e9d" x="74" y="25" width="320" height="14">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -300,8 +300,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<bottomPen lineWidth="0.2"/>
 					<rightPen lineWidth="0.2"/>
 				</box>
-				<textElement>
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Representative}]]></textFieldExpression>
 			</textField>
@@ -310,8 +310,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PEDIDO]]></text>
 			</staticText>
@@ -322,8 +322,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="13" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{OrderID}]]></textFieldExpression>
 			</textField>
@@ -337,40 +337,40 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement uuid="c58becf6-0a28-4f3e-a2ee-2efc2029026b" x="2" y="47" width="61" height="16"/>
-				<textElement textAlignment="Center">
-					<font size="9" isBold="true"/>
+				<reportElement uuid="c58becf6-0a28-4f3e-a2ee-2efc2029026b" x="2" y="46" width="61" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DT. PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="04290aa5-a309-47a2-be7a-65e36bcc6b1a" x="67" y="47" width="172" height="16"/>
-				<textElement textAlignment="Left">
-					<font size="9" isBold="true"/>
+				<reportElement uuid="04290aa5-a309-47a2-be7a-65e36bcc6b1a" x="67" y="46" width="172" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRAZO DE ENTREGA (SEMANA/ANO)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b0e4d374-d785-4809-9efb-95dc2e840365" x="244" y="47" width="60" height="16">
+				<reportElement uuid="b0e4d374-d785-4809-9efb-95dc2e840365" x="244" y="46" width="60" height="16">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left">
-					<font size="9" isBold="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nº ORÇAM.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b2fdcf88-97b8-4559-8c7f-95eb99f60b40" x="310" y="47" width="71" height="16"/>
-				<textElement textAlignment="Left">
-					<font size="9" isBold="true"/>
+				<reportElement uuid="b2fdcf88-97b8-4559-8c7f-95eb99f60b40" x="310" y="46" width="71" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nº PROJETO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8cb41d0a-059c-4ec0-880f-41a33486f307" x="387" y="47" width="164" height="16"/>
-				<textElement textAlignment="Left">
-					<font size="9" isBold="true"/>
+				<reportElement uuid="8cb41d0a-059c-4ec0-880f-41a33486f307" x="387" y="46" width="164" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ACABAMENTO]]></text>
 			</staticText>
@@ -379,22 +379,22 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{DateRequest}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="ab0bd57e-04d1-4cad-88f7-7b12ea0e597f" x="67" y="60" width="172" height="15"/>
-				<textElement textAlignment="Left">
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{DeliveryTime} + " (" + $P{DeliveryWeek} + ")"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="bc78044a-73c0-4382-aefc-8ee90738d119" x="244" y="60" width="60" height="15"/>
-				<textElement textAlignment="Center">
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{NoBudget}]]></textFieldExpression>
 			</textField>
@@ -403,15 +403,15 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{NoProject}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="cd4fd93c-20ed-4832-96f3-3dc1e1649338" x="387" y="60" width="164" height="15"/>
-				<textElement textAlignment="Left">
-					<font size="9" isBold="true" isItalic="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Finish}]]></textFieldExpression>
 			</textField>
@@ -515,7 +515,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</reportElement>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
@@ -524,7 +524,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<reportElement uuid="67e0ea02-9a26-4275-8d60-d21815552a79" mode="Transparent" x="64" y="4" width="400" height="16" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Courier New" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier-Bold"/>
+					<font fontName="Monospaced" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
@@ -536,7 +536,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</reportElement>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<font fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
@@ -596,24 +596,24 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="7c3cc27d-6ee1-4751-aa47-f985aa4ef090" x="4" y="42" width="548" height="16">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box bottomPadding="3"/>
 				<textElement>
-					<font fontName="Courier New" size="9" pdfFontName="Courier"/>
+					<font fontName="Monospaced" size="9" pdfFontName="Courier"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Comment}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="ebc786c0-d1eb-4447-b926-5a584573507a" x="3" y="28" width="166" height="16">
+				<reportElement uuid="ebc786c0-d1eb-4447-b926-5a584573507a" x="3" y="27" width="166" height="16">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
-					<font isBold="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Observações DO PEDIDO"]]></textFieldExpression>
 			</textField>
@@ -622,8 +622,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="9" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total do Pedido:]]></text>
 			</staticText>
@@ -631,13 +631,13 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<reportElement uuid="e478316d-c0ab-4e72-810b-5939c9e08ca2" positionType="Float" x="470" y="6" width="82" height="15">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="9" isBold="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{OrderTotalWeight}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="e2bd43aa-469c-43d4-9153-996609ff9df1" stretchType="RelativeToBandHeight" x="468" y="4" width="1" height="13">
+				<reportElement uuid="e2bd43aa-469c-43d4-9153-996609ff9df1" x="468" y="4" width="1" height="20">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

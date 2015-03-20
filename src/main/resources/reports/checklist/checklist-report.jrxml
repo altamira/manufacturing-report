@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-checklist-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<property name="ireport.zoom" value="1.815000000000002"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="6"/>
+	<property name="ireport.zoom" value="1.9965000000000033"/>
+	<property name="ireport.x" value="14"/>
+	<property name="ireport.y" value="98"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -656,7 +656,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement uuid="135afdc6-66b7-4574-ad41-367409bce12e" x="71" y="6" width="320" height="14">
+				<reportElement uuid="135afdc6-66b7-4574-ad41-367409bce12e" x="74" y="6" width="320" height="14">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -672,7 +672,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$P{Customer}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="2e64baaa-2025-40e7-bcca-2a4d79463e74" x="3" y="25" width="63" height="14">
+				<reportElement uuid="2e64baaa-2025-40e7-bcca-2a4d79463e74" x="3" y="25" width="66" height="14">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -685,7 +685,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[Representante]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="fd4d0d24-6aaa-4e77-b86b-ee7b4336b71e" x="71" y="25" width="320" height="14">
+				<reportElement uuid="fd4d0d24-6aaa-4e77-b86b-ee7b4336b71e" x="74" y="25" width="320" height="14">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -960,7 +960,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement uuid="4f49cb0c-20e8-468b-a51e-a011ab35e96e" mode="Transparent" x="0" y="1" width="555" height="20" printWhenGroupChanges="ItemGroup">
+				<reportElement uuid="4f49cb0c-20e8-468b-a51e-a011ab35e96e" mode="Transparent" x="0" y="0" width="555" height="20" printWhenGroupChanges="ItemGroup">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -971,7 +971,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="de58ea58-98b0-497f-80b1-e085ccc87943" positionType="Float" x="312" y="3" width="154" height="16" printWhenGroupChanges="ItemGroup">
+				<reportElement uuid="de58ea58-98b0-497f-80b1-e085ccc87943" positionType="Float" x="312" y="2" width="154" height="16" printWhenGroupChanges="ItemGroup">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -981,7 +981,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[PESO TOTAL DO PEDIDO (kg)]]></text>
 			</staticText>
 			<textField pattern="###0.000">
-				<reportElement uuid="1cc15255-66bc-4f9a-b44e-1c0019c0ebbd" positionType="Float" x="469" y="3" width="84" height="15" printWhenGroupChanges="ItemGroup">
+				<reportElement uuid="1cc15255-66bc-4f9a-b44e-1c0019c0ebbd" positionType="Float" x="469" y="2" width="84" height="15" printWhenGroupChanges="ItemGroup">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -991,7 +991,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$V{OrderTotalWeight}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="763877b9-3260-4353-a877-9b290f00d223" x="469" y="1" width="1" height="20">
+				<reportElement uuid="763877b9-3260-4353-a877-9b290f00d223" x="469" y="0" width="1" height="20">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -1010,7 +1010,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="5accdc80-d4b3-48e7-9060-4d5db7090e59" x="4" y="39" width="548" height="16">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
