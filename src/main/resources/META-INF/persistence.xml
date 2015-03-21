@@ -5,7 +5,7 @@
          data source, this example data source is just for development and testing! -->
     <!-- The datasource is deployed as WEB-INF/0auth2-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/0auth2-ds.xml -->
-    <jta-data-source>java:jboss/datasources/oracle-se1-data-0-8-0</jta-data-source>
+    <jta-data-source>java:jboss/datasources/oracle-se1-data-0-9-0</jta-data-source>
     <class>br.com.altamira.data.model.Measurement</class>
     <class>br.com.altamira.data.model.Process</class>
     <class>br.com.altamira.data.model.Property</class>
