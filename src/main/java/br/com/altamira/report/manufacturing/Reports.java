@@ -56,6 +56,9 @@ public class Reports extends ReportConfig {
 	@Inject
 	private AllReports allReports;
 	
+	@Inject
+	private PlanningOrderOperationReport operationReport;
+	
     /**
      * To get the url parameters.
      */
@@ -115,6 +118,35 @@ public class Reports extends ReportConfig {
 
         //AllReports allReports = new AllReports(selectedReports);
         return allReports.mergeAllReports(id,selectedReports);
+    }
+    
+    /**
+     * 
+     * @param req
+     * @param resp
+     * @param id
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
+    @GET
+    @Path("/planning/{id}")
+    @Produces("application/pdf")
+    public Response getOrderOperationReport(
+    		@Context HttpServletRequest req,
+    		@Context HttpServletResponse resp,
+    		@PathParam("id") Long id)
+    		throws ServletException, IOException {
+    	
+    	// GET THE SELECTED OPERATIONS REQUEST
+    	List<String> selectedOperations = info.getQueryParameters().get("op");
+    	
+    	//CHECK FOR AUTH TOKEN
+        /*if (checkAuth(token).getStatus() != 200) {
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+        }*/
+    	
+    	return operationReport.getReport(id, selectedOperations);
     }
 
     /**

@@ -16,11 +16,17 @@
     <class>br.com.altamira.data.model.common.Material</class>
     <class>br.com.altamira.data.model.common.MaterialAlias</class>
     <class>br.com.altamira.data.model.manufacture.Machine</class>
+    <class>br.com.altamira.data.model.manufacture.Operation</class>
     <class>br.com.altamira.data.model.manufacture.Tooling</class>
     <class>br.com.altamira.data.model.manufacture.bom.BOM</class>
     <class>br.com.altamira.data.model.manufacture.bom.Component</class>
     <class>br.com.altamira.data.model.manufacture.bom.Delivery</class>
     <class>br.com.altamira.data.model.manufacture.bom.Item</class>
+    <class>br.com.altamira.data.model.manufacture.execution.BOM</class>
+    <class>br.com.altamira.data.model.manufacture.execution.Component</class>
+    <class>br.com.altamira.data.model.manufacture.execution.Delivered</class>
+    <class>br.com.altamira.data.model.manufacture.execution.Delivery</class>
+    <class>br.com.altamira.data.model.manufacture.execution.Item</class>
     <class>br.com.altamira.data.model.manufacture.order.Order</class>
     <class>br.com.altamira.data.model.manufacture.order.OrderItem</class>
     <class>br.com.altamira.data.model.manufacture.order.OrderItemPart</class>
@@ -62,6 +68,12 @@
     <class>br.com.altamira.data.model.shipping.planning.Transport</class>
     <class>br.com.altamira.data.model.purchase.Steel</class>
     <class>br.com.altamira.data.model.shipping.execution.PackingList</class>
+    <class>br.com.altamira.data.model.manufacture.planning.BOM</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Component</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Item</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Order</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Produce</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Operation</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- Properties for Hibernate -->
