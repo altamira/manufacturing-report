@@ -27,9 +27,14 @@
     <class>br.com.altamira.data.model.manufacture.execution.Delivered</class>
     <class>br.com.altamira.data.model.manufacture.execution.Delivery</class>
     <class>br.com.altamira.data.model.manufacture.execution.Item</class>
-    <class>br.com.altamira.data.model.manufacture.order.Order</class>
-    <class>br.com.altamira.data.model.manufacture.order.OrderItem</class>
-    <class>br.com.altamira.data.model.manufacture.order.OrderItemPart</class>
+    <class>br.com.altamira.data.model.manufacture.planning.BOM</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Component</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Item</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Material</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Operation</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Order</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Process</class>
+    <class>br.com.altamira.data.model.manufacture.planning.Produce</class>
     <class>br.com.altamira.data.model.manufacture.process.Consume</class>
     <class>br.com.altamira.data.model.manufacture.process.Operation</class>
     <class>br.com.altamira.data.model.manufacture.process.Process</class>
@@ -44,6 +49,7 @@
     <class>br.com.altamira.data.model.purchase.Material</class>
     <class>br.com.altamira.data.model.purchase.Request</class>
     <class>br.com.altamira.data.model.purchase.RequestItem</class>
+    <class>br.com.altamira.data.model.purchase.Steel</class>
     <class>br.com.altamira.data.model.sales.Component</class>
     <class>br.com.altamira.data.model.sales.Order</class>
     <class>br.com.altamira.data.model.sales.OrderItem</class>
@@ -59,6 +65,7 @@
     <class>br.com.altamira.data.model.shipping.execution.Delivered</class>
     <class>br.com.altamira.data.model.shipping.execution.Delivery</class>
     <class>br.com.altamira.data.model.shipping.execution.Item</class>
+    <class>br.com.altamira.data.model.shipping.execution.PackingList</class>
     <class>br.com.altamira.data.model.shipping.planning.BOM</class>
     <class>br.com.altamira.data.model.shipping.planning.Component</class>
     <class>br.com.altamira.data.model.shipping.planning.Delivery</class>
@@ -66,14 +73,6 @@
     <class>br.com.altamira.data.model.shipping.planning.Item</class>
     <class>br.com.altamira.data.model.shipping.planning.Status</class>
     <class>br.com.altamira.data.model.shipping.planning.Transport</class>
-    <class>br.com.altamira.data.model.purchase.Steel</class>
-    <class>br.com.altamira.data.model.shipping.execution.PackingList</class>
-    <class>br.com.altamira.data.model.manufacture.planning.BOM</class>
-    <class>br.com.altamira.data.model.manufacture.planning.Component</class>
-    <class>br.com.altamira.data.model.manufacture.planning.Item</class>
-    <class>br.com.altamira.data.model.manufacture.planning.Order</class>
-    <class>br.com.altamira.data.model.manufacture.planning.Produce</class>
-    <class>br.com.altamira.data.model.manufacture.planning.Operation</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- Properties for Hibernate -->

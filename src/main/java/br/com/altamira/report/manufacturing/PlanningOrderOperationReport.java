@@ -125,7 +125,7 @@ public class PlanningOrderOperationReport extends ReportConfig {
 					dataListObj.setStartDate(produceList.get(j).getStartDate());
 					//dataListObj.setBomDelivery(new java.text.SimpleDateFormat("dd/MM/yyyy").format(reportData.get(i).getItem().getBOM().getDelivery()));
 					dataListObj.setBomDelivery(reportData.get(i).getItem().getBOM().getDelivery());
-					dataListObj.setOperDescription(operation.getDescription());
+					dataListObj.setOperDescription(operation.getName());
 					dataListObj.setWeight(reportData.get(i).getWeight().getValue());
 					
 					dataList.add(dataListObj);

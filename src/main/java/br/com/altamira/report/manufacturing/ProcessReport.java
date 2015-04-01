@@ -73,11 +73,6 @@ public class ProcessReport extends ReportConfig {
         parameters.put("UserName", ReportConfig.userName);
         parameters.put("Code", processReportData.getCode());
         parameters.put("Description", processReportData.getDescription());
-        parameters.put("Color", processReportData.getColor());
-        parameters.put("Weight", processReportData.getWeight());
-        parameters.put("Width", processReportData.getWidth());
-        parameters.put("Length", processReportData.getLength());
-        parameters.put("Finish", processReportData.getFinish());
         parameters.put("LogoImage", this.getLogo());
 
         List<Revision> revisions = processReportData.getRevision();
@@ -95,7 +90,7 @@ public class ProcessReport extends ReportConfig {
 
         List<Operation> operations = processReportData.getOperation();
         for (int i = 0; i < operations.size(); i++) {
-            String operationName = operations.get(i).getSequence() + " - " + operations.get(i).getName();
+            String operationName = operations.get(i).getSequence() + " - " + operations.get(i).getOperation().getName();
             String inputCodeList = "";
             String inputMaterialList = "";
             String inputQtyList = "";
