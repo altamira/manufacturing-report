@@ -179,6 +179,12 @@
             <artifactId>json-simple</artifactId>
             <version>1.1</version>
         </dependency>
+        <dependency>
+		<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+        
         <!-- First declare the APIs we depend on and need for compilation. All 
         of them are provided by JBoss WildFly -->
 
