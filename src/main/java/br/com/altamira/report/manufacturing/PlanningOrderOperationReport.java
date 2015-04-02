@@ -11,17 +11,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.ServletException;
 import javax.ws.rs.core.Response;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import com.google.common.collect.Multiset;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPrintPage;
@@ -34,6 +28,10 @@ import br.com.altamira.data.model.manufacture.planning.Component;
 import br.com.altamira.data.model.manufacture.planning.Operation;
 import br.com.altamira.data.model.manufacture.planning.Produce;
 import br.com.altamira.report.util.ReportConfig;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 
 @Stateless
 public class PlanningOrderOperationReport extends ReportConfig {
@@ -132,6 +130,16 @@ public class PlanningOrderOperationReport extends ReportConfig {
 				}
 			}
 			
+			Collections.sort(dataList, new Comparator<PlanningOrderOperationDataBean>() {
+				
+				@Override
+				public int compare(PlanningOrderOperationDataBean o1, PlanningOrderOperationDataBean o2) {
+					
+					return o1.getStartDate().compareTo(o2.getStartDate());
+				}
+				
+			});
+			
 			Multimap<Date, PlanningOrderOperationDataBean> multimap = Multimaps.index(dataList, 
 				new Function<PlanningOrderOperationDataBean, Date>() {
 
@@ -145,11 +153,10 @@ public class PlanningOrderOperationReport extends ReportConfig {
 			JasperPrint combinedPrint = null;
 			List<JRPrintPage> combinedPages;
 			
-			
-			Map<Date, Collection<PlanningOrderOperationDataBean>> multiset = multimap.asMap();
-			for(Date temp : multiset.keySet())
+			Map<Date, Collection<PlanningOrderOperationDataBean>> dataMap = multimap.asMap();
+			for(Date startDate : dataMap.keySet())
 			{
-				Collection<PlanningOrderOperationDataBean> data = multiset.get(temp);
+				Collection<PlanningOrderOperationDataBean> data = dataMap.get(startDate);
 				
 				//GET THE JASPER FILE
 				InputStream reportStream = getClass().getResourceAsStream("/reports/orderoperation/orderoperation-report.jasper");
