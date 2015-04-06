@@ -20,10 +20,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.altamira</groupId>
-    <artifactId>manufacturing-report</artifactId>
+    <artifactId>manufacture-report</artifactId>
     <version>0.9.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Manufacturing Report</name>
+    <name>Manufacture Report</name>
 
     <url>http://data.altamira.com.br</url>
     <description>Manufacturing Report Services</description>

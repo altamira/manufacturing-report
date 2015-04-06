@@ -23,7 +23,7 @@ import br.com.altamira.report.util.ReportConfig;
  * Root resource (exposed at "reports" path)
  */
 @Stateless
-@Path("manufacturing")
+@Path("manufacture")
 public class Reports extends ReportConfig {
 
 	@Inject
