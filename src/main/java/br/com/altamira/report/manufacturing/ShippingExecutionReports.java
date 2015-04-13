@@ -22,40 +22,41 @@ import br.com.altamira.report.util.ReportConfig;
  * Root resource (exposed at "reports" path)
  */
 @Stateless
+@Resource(name = "SHIPPING_EXECUTION")
 @Path("shipping/execution")
 public class ShippingExecutionReports extends ReportConfig {
-	
-	@Inject
-	private PackingListReport packingListReport;
-	
-	/**
+
+    @Inject
+    private PackingListReport packingListReport;
+
+    /**
      * To get the url parameters.
      */
     @Context
     protected UriInfo info;
-    
+
     /**
      * The Auth Token
      */
     private String token;
-    
+
     /**
      * Constructor
      *
      */
     public ShippingExecutionReports() {
-    	
+
     }
-    
+
     /**
      * Constructor
      *
      */
     public ShippingExecutionReports(@QueryParam("token") String token) {
-    	super();
+        super();
         this.token = token;
     }
-    
+
     /**
      * Method handling HTTP GET requests. The returned object will be sent to
      * the client as "application/pdf" media type.
@@ -65,6 +66,7 @@ public class ShippingExecutionReports extends ReportConfig {
      *
      */
     @GET
+    @Permission(name = "PRINT")
     @Path("/packinglist/{id}")
     @Produces("application/pdf")
     public Response packingList(
@@ -75,9 +77,8 @@ public class ShippingExecutionReports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         return packingListReport.getReport(id);
 
     }

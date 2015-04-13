@@ -19,11 +19,11 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 /*
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-*/
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.WebTarget;
+ import javax.ws.rs.core.MediaType;
+ */
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -36,17 +36,17 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Stateless
 public class ShippingReport extends ReportConfig {
-	
-	@EJB
-	protected BOMDao bomDao;
+
+    @EJB
+    protected BOMDao bomDao;
 
     public BOM getData(Long id) {
 
         BOM OrderData = null;
         try {
             /*Client client = ClientBuilder.newClient();
-            WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
-            OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
+             WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
+             OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
             OrderData = bomDao.find(id);
             return OrderData;
         } catch (Exception e) {
@@ -134,10 +134,11 @@ public class ShippingReport extends ReportConfig {
 
             List<Component> OrderItemProductList = OrderItemList.get(i).getComponent();
             for (int j = 0; j < OrderItemProductList.size(); j++) {
-            	
-            	if(OrderItemProductList.get(j).getColor().getCode().equalsIgnoreCase("S/ COR"))
-            		continue;
-            	
+
+                if (OrderItemProductList.get(j).getColor().getCode().equalsIgnoreCase("S/ COR")) {
+                    continue;
+                }
+
                 OrderItemProductDataBean dataListObj = new OrderItemProductDataBean();
                 dataListObj.setItemCode(OrderItemList.get(i).getItem());
                 dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
@@ -151,20 +152,21 @@ public class ShippingReport extends ReportConfig {
             }
 
         }
-        
+
         Collections.sort(dataList, new Comparator<OrderItemProductDataBean>() {
 
-      	   @Override
-      	   public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
-      		   
-      		   int c;
-      		   c = o1.getColor().compareTo(o2.getColor());
-      		   if(c == 0)
-      			   c = o1.getDescription().compareTo(o2.getDescription());
-      		   
-      		   return c;
-      	   }
-      	   
+            @Override
+            public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
+
+                int c;
+                c = o1.getColor().compareTo(o2.getColor());
+                if (c == 0) {
+                    c = o1.getDescription().compareTo(o2.getDescription());
+                }
+
+                return c;
+            }
+
         });
 
         //GET THE JASPER FILE

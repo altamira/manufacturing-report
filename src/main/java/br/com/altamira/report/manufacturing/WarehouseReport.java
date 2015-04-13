@@ -20,15 +20,12 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
 /*
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-*/
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.WebTarget;
+ import javax.ws.rs.core.MediaType;
+ */
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -41,47 +38,46 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Stateless
 public class WarehouseReport extends ReportConfig {
-	
-	@EJB
-	protected ItemDao itemDao;
-	
-	@PersistenceContext
-	protected EntityManager entityManager;
-	
-	public BOM getData(Long id) {
 
-		BOM OrderData = null;
-		try {
-			/*Client client = ClientBuilder.newClient();
+    @EJB
+    protected ItemDao itemDao;
+
+    @PersistenceContext
+    protected EntityManager entityManager;
+
+    public BOM getData(Long id) {
+
+        BOM OrderData = null;
+        try {
+            /*Client client = ClientBuilder.newClient();
              WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
              OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
 
-			OrderData = entityManager.find(BOM.class, id);
-			
-			/*if (OrderData != null) {
-                MultivaluedMap<String, String> parameters = new MultivaluedHashMap<String, String>();
+            OrderData = entityManager.find(BOM.class, id);
+
+            /*if (OrderData != null) {
+             MultivaluedMap<String, String> parameters = new MultivaluedHashMap<String, String>();
                 
-                List<String> parentId = new ArrayList<String>();
-                parentId.add(id.toString());
-                parameters.put("parentId", parentId);
+             List<String> parentId = new ArrayList<String>();
+             parentId.add(id.toString());
+             parameters.put("parentId", parentId);
                 
-                List<String> item = new ArrayList<String>();
-                item.add("0");
-                parameters.put("item", item);
+             List<String> item = new ArrayList<String>();
+             item.add("0");
+             parameters.put("item", item);
 
-                List<Item> itemList = itemDao.list(parameters, 0, 1);
+             List<Item> itemList = itemDao.list(parameters, 0, 1);
 
-                OrderData.setItem(itemList);
-            }*/
-			
-			return OrderData;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+             OrderData.setItem(itemList);
+             }*/
+            return OrderData;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-		return OrderData;
-	}
+        return OrderData;
+    }
 
     public Response getReport(Long id) {
         JasperPrint jasperPrint;
@@ -157,19 +153,21 @@ public class WarehouseReport extends ReportConfig {
         ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
         List<Item> OrderItemList = reportData.getItem();
         for (int i = 0; i < OrderItemList.size(); i++) {
-        	
-        	// include only ITEM 0
-        	if(OrderItemList.get(i).getItem() != 0)
-        		continue;
+
+            // include only ITEM 0
+            if (OrderItemList.get(i).getItem() != 0) {
+                continue;
+            }
 
             List<Component> OrderItemProductList = OrderItemList.get(i).getComponent();
             for (int j = 0; j < OrderItemProductList.size(); j++) {
-            	
-            	// exclude components code starting from "ALP" and "GALV"
-            	if(OrderItemProductList.get(j).getCode().toUpperCase().startsWith("ALP") ||
-            			OrderItemProductList.get(j).getCode().toUpperCase().startsWith("GALV"))
-            		continue;
-            	
+
+                // exclude components code starting from "ALP" and "GALV"
+                if (OrderItemProductList.get(j).getCode().toUpperCase().startsWith("ALP")
+                        || OrderItemProductList.get(j).getCode().toUpperCase().startsWith("GALV")) {
+                    continue;
+                }
+
                 OrderItemProductDataBean dataListObj = new OrderItemProductDataBean();
                 dataListObj.setItemCode(OrderItemList.get(i).getItem());
                 dataListObj.setItemDescription(OrderItemList.get(i).getDescription());
@@ -183,15 +181,15 @@ public class WarehouseReport extends ReportConfig {
             }
 
         }
-        
+
         Collections.sort(dataList, new Comparator<OrderItemProductDataBean>() {
 
-      	   @Override
-      	   public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
-      		   
-      		   return o1.getDescription().compareTo(o2.getDescription());
-      	   }
-      	   
+            @Override
+            public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
+
+                return o1.getDescription().compareTo(o2.getDescription());
+            }
+
         });
 
         //GET THE JASPER FILE

@@ -23,42 +23,37 @@ import br.com.altamira.report.util.ReportConfig;
  * Root resource (exposed at "reports" path)
  */
 @Stateless
-@Path("manufacture")
-public class Reports extends ReportConfig {
+@Resource(name = "MANUFACTURE_BOM")
+@Path("manufacture/bom")
+public class BOMReports extends ReportConfig {
 
-	@Inject
-	private MaterialListReport materialListReport;
-	
-	@Inject
-	private PaintingReport serviceOrderPaintingReport;
-	
-	@Inject
-	private WarehouseReport serviceOrderWarehouseReport;
-	
-	@Inject
-	private ShippingReport serviceOrderShippingReport;
-	
-	@Inject
-	private EditorReport serviceOrderEditorReport;
-	
-	@Inject
-	private ProductionReport serviceOrderProductionReport;
-	
-	@Inject
-	private TransportationReport serviceOrderTransportationReport;
-	
-	@Inject
-	private WeldReport serviceOrderWeldReport;
-	
-	@Inject
-	private ProcessReport processReport;
-	
-	@Inject
-	private AllReports allReports;
-	
-	@Inject
-	private PlanningOrderOperationReport operationReport;
-	
+    @Inject
+    private MaterialListReport materialListReport;
+
+    @Inject
+    private PaintingReport serviceOrderPaintingReport;
+
+    @Inject
+    private WarehouseReport serviceOrderWarehouseReport;
+
+    @Inject
+    private ShippingReport serviceOrderShippingReport;
+
+    @Inject
+    private EditorReport serviceOrderEditorReport;
+
+    @Inject
+    private ProductionReport serviceOrderProductionReport;
+
+    @Inject
+    private TransportationReport serviceOrderTransportationReport;
+
+    @Inject
+    private WeldReport serviceOrderWeldReport;
+
+    @Inject
+    private AllReports allReports;
+
     /**
      * To get the url parameters.
      */
@@ -74,15 +69,15 @@ public class Reports extends ReportConfig {
      * Constructor
      *
      */
-    public Reports() {
-        
+    public BOMReports() {
+
     }
-    
+
     /**
      * Constructor
      *
      */
-    public Reports(@QueryParam("token") String token) {
+    public BOMReports(@QueryParam("token") String token) {
         super();
         this.token = token;
     }
@@ -100,7 +95,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}")
+    @Permission(name = "PRINT")
+    @Path("/{id}")
     @Produces("application/pdf")
     public Response getAllReport(
             @Context HttpServletRequest req,
@@ -113,40 +109,10 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //AllReports allReports = new AllReports(selectedReports);
-        return allReports.mergeAllReports(id,selectedReports);
-    }
-    
-    /**
-     * 
-     * @param req
-     * @param resp
-     * @param id
-     * @return
-     * @throws ServletException
-     * @throws IOException
-     */
-    @GET
-    @Path("/planning/{id}")
-    @Produces("application/pdf")
-    public Response getOrderOperationReport(
-    		@Context HttpServletRequest req,
-    		@Context HttpServletResponse resp,
-    		@PathParam("id") Long id)
-    		throws ServletException, IOException {
-    	
-    	// GET THE SELECTED OPERATIONS REQUEST
-    	List<String> selectedOperations = info.getQueryParameters().get("op");
-    	
-    	//CHECK FOR AUTH TOKEN
-        /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-    	
-    	return operationReport.getReport(id, selectedOperations);
+        return allReports.mergeAllReports(id, selectedReports);
     }
 
     /**
@@ -162,38 +128,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/process/{id}")
-    @Produces("application/pdf")
-    public Response manufacturingProcess(
-            @Context HttpServletRequest req,
-            @Context HttpServletResponse resp,
-            @PathParam("id") Long id)
-            throws ServletException, IOException {
-
-        //CHECK FOR AUTH TOKEN
-        /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
-        //ProcessReport processReport = new ProcessReport();
-        return processReport.getReport(id);
-
-    }
-
-    /**
-     * Method handling HTTP GET requests. The returned object will be sent to
-     * the client as "application/pdf" media type.
-     *
-     * @param req
-     * @param resp
-     * @param id
-     * @return
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
-     *
-     */
-    @GET
-    @Path("/bom/{id}/checklist")
+    @Permission(name = "PRINT")
+    @Path("/{id}/checklist")
     @Produces("application/pdf")
     public Response materialListReport(
             @Context HttpServletRequest req,
@@ -203,9 +139,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //MaterialListReport materialListReport = new MaterialListReport();
         return materialListReport.getReport(id);
 
@@ -224,7 +159,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/editor")
+    @Permission(name = "PRINT")
+    @Path("/{id}/editor")
     @Produces("application/pdf")
     public Response serviceOrderEditor(
             @Context HttpServletRequest req,
@@ -234,9 +170,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //EditorReport serviceOrderEditorReport = new EditorReport();
         return serviceOrderEditorReport.getReport(id);
 
@@ -251,7 +186,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/painting")
+    @Permission(name = "PRINT")
+    @Path("/{id}/painting")
     @Produces("application/pdf")
     public Response serviceOrderPainting(
             @Context HttpServletRequest req,
@@ -261,9 +197,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //PaintingReport serviceOrderPaintingReport = new PaintingReport();
         return serviceOrderPaintingReport.getReport(id);
 
@@ -278,7 +213,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/production")
+    @Permission(name = "PRINT")
+    @Path("/{id}/production")
     @Produces("application/pdf")
     public Response serviceOrderProduction(
             @Context HttpServletRequest req,
@@ -288,9 +224,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //ProductionReport serviceOrderProductionReport = new ProductionReport();
         return serviceOrderProductionReport.getReport(id);
 
@@ -305,7 +240,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/shipping")
+    @Permission(name = "PRINT")
+    @Path("/{id}/shipping")
     @Produces("application/pdf")
     public Response serviceOrderShipping(
             @Context HttpServletRequest req,
@@ -315,9 +251,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //ShippingReport serviceOrderShippingReport = new ShippingReport();
         return serviceOrderShippingReport.getReport(id);
 
@@ -332,7 +267,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/transportation")
+    @Permission(name = "PRINT")
+    @Path("/{id}/transportation")
     @Produces("application/pdf")
     public Response serviceOrderTransportation(
             @Context HttpServletRequest req,
@@ -342,9 +278,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //TransportationReport serviceOrderTransportationReport = new TransportationReport();
         return serviceOrderTransportationReport.getReport(id);
 
@@ -359,7 +294,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/warehouse")
+    @Permission(name = "PRINT")
+    @Path("/{id}/warehouse")
     @Produces("application/pdf")
     public Response serviceOrderWarehouse(
             @Context HttpServletRequest req,
@@ -369,9 +305,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //WarehouseReport serviceOrderWarehouseReport = new WarehouseReport();
         return serviceOrderWarehouseReport.getReport(id);
 
@@ -386,7 +321,8 @@ public class Reports extends ReportConfig {
      *
      */
     @GET
-    @Path("/bom/{id}/weld")
+    @Permission(name = "PRINT")
+    @Path("/{id}/weld")
     @Produces("application/pdf")
     public Response serviceOrderWeld(
             @Context HttpServletRequest req,
@@ -396,9 +332,8 @@ public class Reports extends ReportConfig {
 
         //CHECK FOR AUTH TOKEN
         /*if (checkAuth(token).getStatus() != 200) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
-        }*/
-
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
         //WeldReport serviceOrderWeldReport = new WeldReport();
         return serviceOrderWeldReport.getReport(id);
 

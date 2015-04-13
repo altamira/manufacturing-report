@@ -28,17 +28,17 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Stateless
 public class EditorReport extends ReportConfig {
-	
-	@EJB
-	protected BOMDao bomDao;
+
+    @EJB
+    protected BOMDao bomDao;
 
     public BOM getData(Long id) {
         BOM OrderData = null;
         try {
             /*Client client = ClientBuilder.newClient();
-            WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
-            OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
-        	OrderData = bomDao.find(id);
+             WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
+             OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);*/
+            OrderData = bomDao.find(id);
             return OrderData;
         } catch (Exception e) {
             // TODO Auto-generated catch block

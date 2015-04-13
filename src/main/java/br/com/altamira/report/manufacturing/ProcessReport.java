@@ -19,34 +19,41 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import br.com.altamira.report.util.ReportConfig;
+import javax.ejb.Stateless;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+@Stateless
+@Resource(name = "MANUFACTURE_PROCESS")
+@Path("manufacture/process")
 public class ProcessReport extends ReportConfig {
 
-	@Inject
-	protected ProcessDao processDao;
-	
+    @Inject
+    protected ProcessDao processDao;
+
     public Process getData(Long id) throws IOException {
         Process processData = null;
 
         /*Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/process/");
-        processData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(Process.class);*/
-        
+         WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/process/");
+         processData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(Process.class);*/
         processData = processDao.find(id);
-        
+
         return processData;
     }
 
@@ -199,4 +206,34 @@ public class ProcessReport extends ReportConfig {
         return null;
     }
 
+    /**
+     * Method handling HTTP GET requests. The returned object will be sent to
+     * the client as "application/pdf" media type.
+     *
+     * @param req
+     * @param resp
+     * @param id
+     * @return
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     *
+     */
+    @GET
+    @Permission(name = "PRINT")
+    @Path("/{id}")
+    @Produces("application/pdf")
+    public Response manufacturingProcess(
+            @Context HttpServletRequest req,
+            @Context HttpServletResponse resp,
+            @PathParam("id") Long id)
+            throws ServletException, IOException {
+
+        //CHECK FOR AUTH TOKEN
+        /*if (checkAuth(token).getStatus() != 200) {
+         return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+         }*/
+        //ProcessReport processReport = new ProcessReport();
+        return getReport(id);
+
+    }
 }

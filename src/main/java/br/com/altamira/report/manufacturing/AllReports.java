@@ -17,37 +17,37 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 @Stateless
 public class AllReports {
-	
-	@Inject
-	private MaterialListReport materialListReport;
-	
-	@Inject
-	private PaintingReport serviceOrderPaintingReport;
-	
-	@Inject
-	private ProductionReport serviceOrderProductionReport;
-	
-	@Inject
-	private ShippingReport serviceOrderShippingReport;
-	
-	@Inject
-	private TransportationReport serviceOrderTransportationReport;
-	
-	@Inject
-	private WarehouseReport serviceOrderWarehouseReport;
-	
-	@Inject
-	private WeldReport serviceOrderWeldReport;
-	
-	@Inject
-	private EditorReport serviceOrderEditorReport;
+
+    @Inject
+    private MaterialListReport materialListReport;
+
+    @Inject
+    private PaintingReport serviceOrderPaintingReport;
+
+    @Inject
+    private ProductionReport serviceOrderProductionReport;
+
+    @Inject
+    private ShippingReport serviceOrderShippingReport;
+
+    @Inject
+    private TransportationReport serviceOrderTransportationReport;
+
+    @Inject
+    private WarehouseReport serviceOrderWarehouseReport;
+
+    @Inject
+    private WeldReport serviceOrderWeldReport;
+
+    @Inject
+    private EditorReport serviceOrderEditorReport;
 
     private List<String> selectedReports;
 
     public AllReports() {
-		
-	}
-    
+
+    }
+
     public AllReports(List<String> selectedReports) {
         this.selectedReports = selectedReports;
     }

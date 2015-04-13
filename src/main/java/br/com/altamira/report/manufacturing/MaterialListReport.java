@@ -26,13 +26,11 @@ import br.com.altamira.report.util.ReportConfig;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 /*
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-*/
-
-
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.WebTarget;
+ import javax.ws.rs.core.MediaType;
+ */
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -58,8 +56,7 @@ public class MaterialListReport extends ReportConfig {
 //        Client client = ClientBuilder.newClient();
 //        WebTarget webTarget = client.target(DATA_BASE_URL + "/manufacturing/bom/");
 //        OrderData = webTarget.path(id.toString()).request(MediaType.APPLICATION_JSON).get(BOM.class);
-        
-         OrderData = bomDao.find(id);
+        OrderData = bomDao.find(id);
 
         return OrderData;
     }
@@ -153,20 +150,21 @@ public class MaterialListReport extends ReportConfig {
                     dataList.add(dataListObj);
                 }
             }
-            
+
             Collections.sort(dataList, new Comparator<OrderItemProductDataBean>() {
 
-            	   @Override
-            	   public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
-            		   
-            		   int c;
-            		   c = new Long(o1.getItemCode()).compareTo(new Long(o2.getItemCode()));
-            		   if(c == 0)
-            			   c = o1.getDescription().compareTo(o2.getDescription());
-            		   
-            		   return c;
-            	   }
-            	   
+                @Override
+                public int compare(OrderItemProductDataBean o1, OrderItemProductDataBean o2) {
+
+                    int c;
+                    c = new Long(o1.getItemCode()).compareTo(new Long(o2.getItemCode()));
+                    if (c == 0) {
+                        c = o1.getDescription().compareTo(o2.getDescription());
+                    }
+
+                    return c;
+                }
+
             });
 
             //GET THE JASPER FILE
