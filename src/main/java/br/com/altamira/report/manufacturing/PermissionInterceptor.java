@@ -58,7 +58,7 @@ public class PermissionInterceptor implements ContainerRequestFilter {
 
         if (requestContext.getUriInfo().getQueryParameters().get("token") != null) {
             String token = requestContext.getUriInfo().getQueryParameters().get("token").get(0);
-            System.out.println(token);
+            System.out.println("Token request: " + token);
 
             Method method = resourceInfo.getResourceMethod();
 
@@ -108,12 +108,16 @@ public class PermissionInterceptor implements ContainerRequestFilter {
             Response authResponse = checkAuth(token, resource.toString(), permission);
 
             if (authResponse.getStatus() != 200) {
-                String message = authResponse.readEntity(HashMap.class).get("message").toString();
+                HashMap<String, String> message = new HashMap<>();
+                message.put("message", "Access Denied");
+                //String message = authResponse.readEntity(HashMap.class).get("message").toString();
                 requestContext.abortWith(Response.status(authResponse.getStatus()).entity(message).build());
             }
 
         } else {
-            Response response = Response.status(Response.Status.UNAUTHORIZED).entity("Token required").build();
+            HashMap<String, String> map = new HashMap<>();
+            map.put("message", "Token required");
+            Response response = Response.status(Response.Status.UNAUTHORIZED).entity(map).type(MediaType.APPLICATION_JSON).build();
             requestContext.abortWith(response);
         }
 
@@ -129,9 +133,11 @@ public class PermissionInterceptor implements ContainerRequestFilter {
      */
     public Response checkAuth(String token, String resource, String permission) {
         Response response = null;
-
+        
+        String url = AUTH_URL + "?token=" + token + "&permission=" + permission;
+        
         try {
-            String url = AUTH_URL + "?token=" + token + "&permission=" + permission;
+
             Client client = ClientBuilder.newClient();
             WebTarget webTarget = client.target(url);
             Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
@@ -139,11 +145,14 @@ public class PermissionInterceptor implements ContainerRequestFilter {
             HashMap<String, String> map = new HashMap<>();
             map.put("resource", resource);
 
-            return invocationBuilder.post(Entity.json(map));
+            response = invocationBuilder.post(Entity.json(map));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-
+            System.out.println("Authentication exception: [" + url + "], " + e.getMessage());
+            HashMap<String, String> map = new HashMap<>();
+            map.put("message", e.getMessage());
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(map).build();
         }
+
         return response;
     }
 

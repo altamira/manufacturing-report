@@ -43,7 +43,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
 @Stateless
-@Resource(name = "MANUFACTURE_BOM")
+@Resource(name = "MANUFACTURE_PLANNING")
 @Path("manufacture/planning")
 public class PlanningOrderOperationReport extends ReportConfig {
 
