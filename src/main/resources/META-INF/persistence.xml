@@ -76,6 +76,7 @@
     <class>br.com.altamira.data.model.security.Resource</class>
     <class>br.com.altamira.data.model.shipping.planning.AccessToken</class>
     <class>br.com.altamira.data.model.shipping.planning.User</class>
+    <class>br.com.altamira.data.model.manufacture.bom.Status</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- Properties for Hibernate -->
