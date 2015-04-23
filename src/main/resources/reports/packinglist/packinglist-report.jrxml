@@ -3,7 +3,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="21"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="Title" class="java.lang.String">
 		<parameterDescription><![CDATA[Title]]></parameterDescription>
 	</parameter>
@@ -640,7 +640,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement uuid="0b1f5891-014e-430d-aa9e-75cd30a0083e" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="52" width="555" height="155">
+				<reportElement uuid="0b1f5891-014e-430d-aa9e-75cd30a0083e" positionType="Float" mode="Transparent" x="0" y="52" width="555" height="155">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -651,7 +651,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement uuid="e0290118-6515-4a02-a520-219deb8cac02" mode="Transparent" x="0" y="6" width="555" height="38" isRemoveLineWhenBlank="true" printWhenGroupChanges="Material">
+				<reportElement uuid="e0290118-6515-4a02-a520-219deb8cac02" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="6" width="555" height="38" isRemoveLineWhenBlank="true" printWhenGroupChanges="Material">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -687,7 +687,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[OBSERVAÇÕES DO PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e8da2cba-e31e-4b7f-b0d4-d411b6dc531f" x="4" y="51" width="150" height="16">
+				<reportElement uuid="e8da2cba-e31e-4b7f-b0d4-d411b6dc531f" positionType="Float" x="4" y="51" width="150" height="16">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -699,7 +699,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[DADOS DE CARREGAMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ce4fbdac-31cd-43c1-a1db-2b300a28ff41" x="4" y="77" width="548" height="15">
+				<reportElement uuid="ce4fbdac-31cd-43c1-a1db-2b300a28ff41" positionType="Float" x="4" y="77" width="548" height="15">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -711,7 +711,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[Declaro que recebi o material constante deste romaneio referente a Nota Fiscal nro _____________ emitida em __/__/__]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="48021207-1abb-4c8f-a81a-97205c204988" x="4" y="163" width="548" height="15">
+				<reportElement uuid="48021207-1abb-4c8f-a81a-97205c204988" positionType="Float" x="4" y="163" width="548" height="15">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -723,7 +723,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[Conferido Por ______________________________________ Responsável: ____________________________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="871d0cf0-208c-43b6-a22a-f04981640cab" x="4" y="178" width="548" height="15">
+				<reportElement uuid="871d0cf0-208c-43b6-a22a-f04981640cab" positionType="Float" x="4" y="178" width="548" height="15">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -735,7 +735,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[                           (Nome do Cliente/Motorista/Transportador)                                     (Nome do Funcionário Altamira)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e8603f2c-c42a-4799-b016-3982aa0df9c5" x="4" y="100" width="548" height="15">
+				<reportElement uuid="e8603f2c-c42a-4799-b016-3982aa0df9c5" positionType="Float" x="4" y="100" width="548" height="15">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -747,7 +747,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<text><![CDATA[Nome _________________________________________ Assinatura ____________________ RG __________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ecc43044-2f2c-41e0-bba3-b16d75574d8d" x="4" y="123" width="548" height="15">
+				<reportElement uuid="ecc43044-2f2c-41e0-bba3-b16d75574d8d" positionType="Float" x="4" y="123" width="548" height="15">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
